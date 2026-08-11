@@ -4,7 +4,7 @@ interface HeroProps {
   onOpenVideo?: () => void;
 }
 
-const TOTAL_FRAMES = 221;
+const TOTAL_FRAMES = 200;
 
 export const Hero: React.FC<HeroProps> = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -14,10 +14,10 @@ export const Hero: React.FC<HeroProps> = () => {
   
   const [scrollProgress, setScrollProgress] = useState(0);
 
-  // Helper to get formatted frame path
+  // Helper to get formatted frame path (.webp)
   const getFramePath = (index: number) => {
     const padded = String(index + 1).padStart(3, '0');
-    return `/frames/frame_${padded}.jpg`;
+    return `/frames/frame_${padded}.webp`;
   };
 
   // Draw specific frame onto canvas with proper cover aspect ratio
@@ -64,19 +64,34 @@ export const Hero: React.FC<HeroProps> = () => {
   useEffect(() => {
     const images: HTMLImageElement[] = [];
 
-    // Load first frame immediately and render
+    // Setup initial frame
     const firstImg = new Image();
     firstImg.src = getFramePath(0);
-    firstImg.onload = () => {
+    const onFirstLoad = () => {
       images[0] = firstImg;
       resizeCanvas();
       drawFrame(0);
     };
 
-    // Preload remaining frames
+    if (firstImg.complete && firstImg.naturalWidth > 0) {
+      onFirstLoad();
+    } else {
+      firstImg.onload = onFirstLoad;
+    }
+
+    // Preload remaining frames in background
     for (let i = 0; i < TOTAL_FRAMES; i++) {
+      if (i === 0) {
+        images[0] = firstImg;
+        continue;
+      }
       const img = new Image();
       img.src = getFramePath(i);
+      img.onload = () => {
+        if (currentFrameRef.current === i) {
+          drawFrame(i);
+        }
+      };
       images[i] = img;
     }
 
