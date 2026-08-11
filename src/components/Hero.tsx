@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { globalPreloadedFrames } from './InitialLoader';
 
 interface HeroProps {
   onOpenVideo?: () => void;
@@ -27,7 +28,7 @@ export const Hero: React.FC<HeroProps> = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const img = imagesRef.current[frameIndex];
+    const img = imagesRef.current[frameIndex] || globalPreloadedFrames[frameIndex];
     if (!img || !img.complete || img.naturalWidth === 0) return;
 
     const canvasWidth = canvas.width;
@@ -60,29 +61,37 @@ export const Hero: React.FC<HeroProps> = () => {
     drawFrame(currentFrameRef.current);
   };
 
-  // Preload frames sequence
+  // Preload frames sequence or bind to globalPreloadedFrames
   useEffect(() => {
-    const images: HTMLImageElement[] = [];
-
-    // Load first frame immediately and render
-    const firstImg = new Image();
-    firstImg.src = getFramePath(0);
-    firstImg.onload = () => {
-      images[0] = firstImg;
+    if (globalPreloadedFrames.length > 0) {
+      imagesRef.current = globalPreloadedFrames;
       resizeCanvas();
       drawFrame(0);
-    };
+    } else {
+      const images: HTMLImageElement[] = [];
 
-    // Preload remaining frames
-    for (let i = 0; i < TOTAL_FRAMES; i++) {
-      const img = new Image();
-      img.src = getFramePath(i);
-      images[i] = img;
+      // Load first frame immediately and render
+      const firstImg = new Image();
+      firstImg.src = getFramePath(0);
+      firstImg.onload = () => {
+        images[0] = firstImg;
+        resizeCanvas();
+        drawFrame(0);
+      };
+
+      // Preload remaining frames
+      for (let i = 0; i < TOTAL_FRAMES; i++) {
+        const img = new Image();
+        img.src = getFramePath(i);
+        images[i] = img;
+      }
+
+      imagesRef.current = images;
     }
 
-    imagesRef.current = images;
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
+    drawFrame(0);
 
     return () => {
       window.removeEventListener('resize', resizeCanvas);
