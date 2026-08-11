@@ -16,14 +16,10 @@ import { ProductDetailModal } from './components/ProductDetailModal';
 import { VideoModal } from './components/VideoModal';
 import { SearchModal } from './components/SearchModal';
 import { LearnMoreModal } from './components/LearnMoreModal';
-import { InitialLoader } from './components/InitialLoader';
 
 import type { ProductItem } from './data/siteData';
 
 export function App() {
-  // Initial 5-Second Loading Screen State
-  const [isLoading, setIsLoading] = useState(true);
-
   // Navigation Router State
   const [currentPage, setCurrentPage] = useState<string>('home');
   const [pageParam, setPageParam] = useState<string | undefined>(undefined);
@@ -57,9 +53,6 @@ export function App() {
 
   return (
     <div className="kayujati-app" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      {/* 5-Second Luxury Frame Preloader */}
-      {isLoading && <InitialLoader onFinish={() => setIsLoading(false)} />}
-
       {/* Global Dynamic Navbar */}
       <Navbar
         currentPage={currentPage}
