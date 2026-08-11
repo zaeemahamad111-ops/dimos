@@ -23,35 +23,41 @@ export const WatermarkFooter: React.FC<WatermarkFooterProps> = ({ onNavigate }) 
       }}
     >
       <div className="container">
-        {/* Massive Monumental Watermark 'dimos' in Melfira */}
+        {/* Massive Monumental Watermark Logo at 30% Transparency */}
         <div
           style={{
             userSelect: 'none',
-            textAlign: 'center',
-            marginBottom: 'clamp(20px, 4vw, 32px)',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginBottom: 'clamp(28px, 5vw, 48px)',
             overflow: 'hidden',
             cursor: 'pointer',
           }}
           onClick={() => handleNav('home')}
         >
-          <span
-            className="font-melfira"
+          <img
+            src="/86.png"
+            alt="Dimos Furniture"
             style={{
-              fontSize: 'clamp(70px, 20vw, 240px)',
-              fontWeight: 'bold',
-              letterSpacing: '-0.02em',
-              lineHeight: 0.85,
-              color: 'var(--color-border)',
-              display: 'inline-block',
-              textTransform: 'lowercase',
-              opacity: 0.85,
-              transition: 'color 0.3s ease',
+              width: '100%',
+              maxWidth: 'clamp(300px, 55vw, 680px)',
+              height: 'auto',
+              maxHeight: 'clamp(100px, 16vw, 190px)',
+              objectFit: 'contain',
+              opacity: 0.3, // 30% transparency
+              transition: 'opacity 0.3s ease, transform 0.3s ease',
+              display: 'block',
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = '#e0d8cc')}
-            onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--color-border)')}
-          >
-            dimos
-          </span>
+            onMouseEnter={(e) => {
+              e.currentTarget.style.opacity = '0.45';
+              e.currentTarget.style.transform = 'scale(1.02)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.opacity = '0.3';
+              e.currentTarget.style.transform = 'scale(1.0)';
+            }}
+          />
         </div>
 
         {/* Footer Main Links & Information Columns */}
