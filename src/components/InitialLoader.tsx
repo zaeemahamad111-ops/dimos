@@ -36,8 +36,7 @@ export const InitialLoader: React.FC<InitialLoaderProps> = ({ onFinish }) => {
     }
 
     // 2. Smooth Continuous RequestAnimationFrame Animation Loop
-    // Minimum 3.5s cinematic intro, dynamically scaling to actual network speed
-    const MIN_DURATION = 3600; // 3.6 seconds smooth build-up
+    const MIN_DURATION = 3500; // 3.5 seconds smooth build-up
     let currentVal = 0;
 
     const tick = () => {
@@ -47,19 +46,16 @@ export const InitialLoader: React.FC<InitialLoaderProps> = ({ onFinish }) => {
       const framePercent = (framesLoadedRef.current / TOTAL_FRAMES) * 100;
       const timePercent = (elapsed / MIN_DURATION) * 100;
 
-      // Target progress is governed by time and actual frame downloads
-      // It smoothly climbs continuously without jumping to 100% early
+      // Target progress climbs smoothly without getting stuck
       let target = Math.min(100, Math.min(framePercent + 15, timePercent));
       
-      // If elapsed past min duration and at least 80% frames ready, smoothly push to 100
-      if (elapsed >= MIN_DURATION && framesLoadedRef.current >= Math.min(TOTAL_FRAMES, 60)) {
+      if (elapsed >= MIN_DURATION && framesLoadedRef.current >= Math.min(TOTAL_FRAMES, 50)) {
         target = 100;
       }
 
-      // Smooth lerp easing
       const diff = target - currentVal;
       if (diff > 0) {
-        currentVal += Math.max(0.4, diff * 0.08);
+        currentVal += Math.max(0.45, diff * 0.09);
       }
 
       const rounded = Math.min(100, Math.floor(currentVal));
@@ -76,16 +72,16 @@ export const InitialLoader: React.FC<InitialLoaderProps> = ({ onFinish }) => {
       } else if (rounded < 95) {
         setStatusMessage('Buffing Artisanal Organic Beeswax Sealants');
       } else {
-        setStatusMessage('Showroom Canvas Ready');
+        setStatusMessage('Showroom Experience Ready');
       }
 
-      // When reaching 100%, immediately trigger smooth cinematic fadeout with ZERO pause!
+      // When reaching 100%, trigger smooth cinematic fadeout with ZERO pause!
       if (rounded >= 100 && !finishedRef.current) {
         finishedRef.current = true;
         setIsFadingOut(true);
         setTimeout(() => {
           onFinish();
-        }, 650); // Instant 650ms fade into hero
+        }, 650);
         return;
       }
 
@@ -111,27 +107,27 @@ export const InitialLoader: React.FC<InitialLoaderProps> = ({ onFinish }) => {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
-        padding: 'clamp(20px, 4vw, 48px)',
+        padding: 'clamp(24px, 4vw, 48px)',
         opacity: isFadingOut ? 0 : 1,
-        transform: isFadingOut ? 'scale(1.05)' : 'scale(1)',
-        filter: isFadingOut ? 'blur(10px)' : 'none',
+        transform: isFadingOut ? 'scale(1.04)' : 'scale(1)',
+        filter: isFadingOut ? 'blur(8px)' : 'none',
         pointerEvents: isFadingOut ? 'none' : 'auto',
         transition: 'opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), filter 0.65s ease',
         userSelect: 'none',
         overflow: 'hidden',
       }}
     >
-      {/* Background Radial Glow & Ambient Ring */}
+      {/* Background Radial Glow */}
       <div
         style={{
           position: 'absolute',
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
-          width: 'clamp(320px, 70vw, 700px)',
-          height: 'clamp(320px, 70vw, 700px)',
+          width: 'clamp(340px, 75vw, 750px)',
+          height: 'clamp(340px, 75vw, 750px)',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(197, 131, 78, 0.14) 0%, rgba(18, 17, 16, 0) 70%)',
+          background: 'radial-gradient(circle, rgba(197, 131, 78, 0.18) 0%, rgba(18, 17, 16, 0) 70%)',
           pointerEvents: 'none',
         }}
       />
@@ -145,15 +141,15 @@ export const InitialLoader: React.FC<InitialLoaderProps> = ({ onFinish }) => {
           width: '100%',
           zIndex: 2,
           borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
-          paddingBottom: '16px',
+          paddingBottom: '14px',
         }}
       >
         <div
           style={{
-            fontSize: '11px',
-            letterSpacing: '0.12em',
+            fontSize: '10.5px',
+            letterSpacing: '0.14em',
             textTransform: 'uppercase',
-            color: 'rgba(255, 255, 255, 0.5)',
+            color: 'rgba(255, 255, 255, 0.55)',
             fontWeight: 600,
             display: 'flex',
             alignItems: 'center',
@@ -166,10 +162,10 @@ export const InitialLoader: React.FC<InitialLoaderProps> = ({ onFinish }) => {
 
         <div
           style={{
-            fontSize: '11px',
-            letterSpacing: '0.12em',
+            fontSize: '10.5px',
+            letterSpacing: '0.14em',
             textTransform: 'uppercase',
-            color: 'rgba(255, 255, 255, 0.5)',
+            color: 'rgba(255, 255, 255, 0.55)',
             fontWeight: 600,
           }}
         >
@@ -177,7 +173,7 @@ export const InitialLoader: React.FC<InitialLoaderProps> = ({ onFinish }) => {
         </div>
       </div>
 
-      {/* Centerpiece: Luminous Brand Mark & Big Dynamic Counter */}
+      {/* Centerpiece: Larger Brand Logo with Refined & Smaller Sub-Text */}
       <div
         style={{
           display: 'flex',
@@ -189,13 +185,17 @@ export const InitialLoader: React.FC<InitialLoaderProps> = ({ onFinish }) => {
           position: 'relative',
           marginTop: 'auto',
           marginBottom: 'auto',
+          width: '100%',
+          maxWidth: '560px',
+          marginLeft: 'auto',
+          marginRight: 'auto',
         }}
       >
-        {/* Animated Brand Logo Container */}
+        {/* Much Larger Logo (as requested) */}
         <div
           style={{
             position: 'relative',
-            marginBottom: 'clamp(20px, 3.5vw, 32px)',
+            marginBottom: 'clamp(24px, 4vw, 36px)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -205,62 +205,60 @@ export const InitialLoader: React.FC<InitialLoaderProps> = ({ onFinish }) => {
             src="/86.png"
             alt="Dimos Furniture"
             style={{
-              height: 'clamp(56px, 10vw, 84px)',
+              height: 'clamp(72px, 14vw, 115px)', // Significantly larger logo
               width: 'auto',
-              maxWidth: 'clamp(220px, 60vw, 360px)',
+              maxWidth: 'clamp(260px, 70vw, 440px)',
               objectFit: 'contain',
               display: 'block',
-              filter: 'drop-shadow(0 12px 32px rgba(0,0,0,0.6))',
+              filter: 'drop-shadow(0 14px 36px rgba(0,0,0,0.65))',
             }}
           />
         </div>
 
-        {/* Unique Subtitle (Different from Hero) */}
+        {/* Refined Small Tagline */}
         <div
           style={{
-            fontSize: '11.5px',
-            letterSpacing: '0.22em',
+            fontSize: '11px',
+            letterSpacing: '0.2em',
             textTransform: 'uppercase',
             color: '#c5834e',
-            fontWeight: 700,
-            marginBottom: 'clamp(14px, 2.5vw, 24px)',
+            fontWeight: 600,
+            marginBottom: 'clamp(12px, 2vw, 18px)',
           }}
         >
           The Timber Experience
         </div>
 
-        {/* Huge Monumental Numerals Counter */}
+        {/* Refined, Elegant Percentage Counter (Smaller & Sleek) */}
         <div
           style={{
-            fontSize: 'clamp(68px, 14vw, 130px)',
-            fontFamily: 'var(--font-melfira), serif',
-            fontWeight: 'bold',
-            lineHeight: 0.9,
-            color: 'transparent',
-            backgroundImage: 'linear-gradient(180deg, #ffffff 30%, rgba(226, 170, 120, 0.8) 100%)',
-            WebkitBackgroundClip: 'text',
-            letterSpacing: '-0.03em',
-            marginBottom: 'clamp(16px, 3vw, 28px)',
+            fontSize: 'clamp(32px, 6vw, 48px)', // Refined smaller percentage text
+            fontFamily: 'var(--font-sans), sans-serif',
+            fontWeight: 700,
+            lineHeight: 1,
+            color: '#ffffff',
+            letterSpacing: '-0.02em',
+            marginBottom: 'clamp(14px, 2.5vw, 20px)',
             display: 'flex',
             alignItems: 'baseline',
-            gap: '4px',
+            gap: '3px',
           }}
         >
           <span>{String(displayProgress).padStart(2, '0')}</span>
-          <span style={{ fontSize: 'clamp(20px, 4vw, 36px)', color: '#c5834e', fontWeight: 400 }}>%</span>
+          <span style={{ fontSize: '18px', color: '#c5834e', fontWeight: 600 }}>%</span>
         </div>
 
-        {/* Dynamic Dual-Layer Progress Bar */}
+        {/* Sleek Dual-Layer Progress Bar */}
         <div
           style={{
             width: '100%',
-            maxWidth: 'clamp(260px, 50vw, 380px)',
+            maxWidth: 'clamp(240px, 45vw, 340px)',
             height: '3px',
             backgroundColor: 'rgba(255, 255, 255, 0.1)',
             borderRadius: '999px',
             overflow: 'hidden',
             position: 'relative',
-            marginBottom: '16px',
+            marginBottom: '14px',
           }}
         >
           <div
@@ -269,21 +267,21 @@ export const InitialLoader: React.FC<InitialLoaderProps> = ({ onFinish }) => {
               height: '100%',
               background: 'linear-gradient(90deg, #8c6239 0%, #c5834e 50%, #f0c296 100%)',
               borderRadius: '999px',
-              boxShadow: '0 0 16px rgba(197, 131, 78, 0.9)',
+              boxShadow: '0 0 14px rgba(197, 131, 78, 0.9)',
               transition: 'width 0.08s linear',
             }}
           />
         </div>
 
-        {/* Real-time Status Text */}
+        {/* Refined Status Text */}
         <div
           style={{
-            fontSize: '12px',
-            color: 'rgba(255, 255, 255, 0.7)',
+            fontSize: '11.5px',
+            color: 'rgba(255, 255, 255, 0.65)',
             letterSpacing: '0.04em',
             display: 'flex',
             alignItems: 'center',
-            gap: '8px',
+            gap: '6px',
           }}
         >
           <span style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: '#c5834e' }} />
@@ -301,13 +299,13 @@ export const InitialLoader: React.FC<InitialLoaderProps> = ({ onFinish }) => {
           width: '100%',
           zIndex: 2,
           borderTop: '1px solid rgba(255, 255, 255, 0.08)',
-          paddingTop: '16px',
-          gap: '12px',
+          paddingTop: '14px',
+          gap: '10px',
         }}
       >
         <div
           style={{
-            fontSize: '11px',
+            fontSize: '10.5px',
             color: 'rgba(255, 255, 255, 0.45)',
             letterSpacing: '0.08em',
             textTransform: 'uppercase',
@@ -318,7 +316,7 @@ export const InitialLoader: React.FC<InitialLoaderProps> = ({ onFinish }) => {
 
         <div
           style={{
-            fontSize: '11px',
+            fontSize: '10.5px',
             color: '#c5834e',
             letterSpacing: '0.08em',
             textTransform: 'uppercase',

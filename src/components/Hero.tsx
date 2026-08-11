@@ -36,6 +36,8 @@ export const Hero: React.FC<HeroProps> = () => {
     const imgWidth = img.naturalWidth;
     const imgHeight = img.naturalHeight;
 
+    if (canvasWidth === 0 || canvasHeight === 0) return;
+
     // Calculate "cover" scale and positioning
     const scale = Math.max(canvasWidth / imgWidth, canvasHeight / imgHeight);
     const drawWidth = imgWidth * scale;
@@ -61,40 +63,49 @@ export const Hero: React.FC<HeroProps> = () => {
     drawFrame(currentFrameRef.current);
   };
 
-  // Preload frames sequence or bind to globalPreloadedFrames
+  // Preload frames sequence & ensure Frame 1 is painted immediately
   useEffect(() => {
+    // 1. If global frames already exists, bind them
     if (globalPreloadedFrames.length > 0) {
       imagesRef.current = globalPreloadedFrames;
-      resizeCanvas();
-      drawFrame(0);
     } else {
       const images: HTMLImageElement[] = [];
-
-      // Load first frame immediately and render
-      const firstImg = new Image();
-      firstImg.src = getFramePath(0);
-      firstImg.onload = () => {
-        images[0] = firstImg;
-        resizeCanvas();
-        drawFrame(0);
-      };
-
-      // Preload remaining frames
       for (let i = 0; i < TOTAL_FRAMES; i++) {
         const img = new Image();
         img.src = getFramePath(i);
         images[i] = img;
       }
-
       imagesRef.current = images;
+    }
+
+    // 2. Load and paint frame 0 immediately
+    const firstImg = imagesRef.current[0] || new Image();
+    if (!firstImg.src) firstImg.src = getFramePath(0);
+
+    const onFirstImgReady = () => {
+      resizeCanvas();
+      drawFrame(0);
+    };
+
+    if (firstImg.complete && firstImg.naturalWidth > 0) {
+      onFirstImgReady();
+    } else {
+      firstImg.onload = onFirstImgReady;
     }
 
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
     drawFrame(0);
 
+    // Minor delayed check to guarantee frame 0 is painted after layout stabilizes
+    const checkTimer = setTimeout(() => {
+      resizeCanvas();
+      drawFrame(0);
+    }, 100);
+
     return () => {
       window.removeEventListener('resize', resizeCanvas);
+      clearTimeout(checkTimer);
     };
   }, []);
 
@@ -168,6 +179,21 @@ export const Hero: React.FC<HeroProps> = () => {
           backgroundColor: '#1c1b1a',
         }}
       >
+        {/* Instant Fallback Base Image (Guarantees Frame 1 is ALWAYS visible without any black flash) */}
+        <img
+          src="/frames/frame_001.jpg"
+          alt="Dimos Teakwood Architecture"
+          style={{
+            position: 'absolute',
+            inset: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            filter: 'brightness(0.96) contrast(1.02)',
+            zIndex: 1,
+          }}
+        />
+
         {/* Full-Bleed Hardware Accelerated Canvas */}
         <canvas
           ref={canvasRef}
@@ -178,6 +204,7 @@ export const Hero: React.FC<HeroProps> = () => {
             height: '100%',
             display: 'block',
             filter: 'brightness(0.96) contrast(1.02)',
+            zIndex: 2,
           }}
         />
 
@@ -189,6 +216,7 @@ export const Hero: React.FC<HeroProps> = () => {
             background:
               'linear-gradient(180deg, rgba(28, 27, 26, 0.4) 0%, rgba(28, 27, 26, 0.0) 40%, rgba(28, 27, 26, 0.65) 100%)',
             pointerEvents: 'none',
+            zIndex: 3,
           }}
         />
 
