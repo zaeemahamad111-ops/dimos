@@ -5,7 +5,7 @@ interface HeroProps {
   onOpenVideo?: () => void;
 }
 
-const TOTAL_FRAMES = 100;
+const TOTAL_FRAMES = 200;
 
 export const Hero: React.FC<HeroProps> = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -18,7 +18,7 @@ export const Hero: React.FC<HeroProps> = () => {
   // Helper to get formatted frame path
   const getFramePath = (index: number) => {
     const padded = String(index + 1).padStart(3, '0');
-    return `/frames/frame_${padded}.jpg`;
+    return `/frames/frame_${padded}.webp`;
   };
 
   // Draw specific frame onto canvas with proper cover aspect ratio
@@ -181,7 +181,7 @@ export const Hero: React.FC<HeroProps> = () => {
       >
         {/* Instant Fallback Base Image (Guarantees Frame 1 is ALWAYS visible without any black flash) */}
         <img
-          src="/frames/frame_001.jpg"
+          src="/frames/frame_001.webp"
           alt="Dimos Teakwood Architecture"
           style={{
             position: 'absolute',

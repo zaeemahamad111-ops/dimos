@@ -4,7 +4,7 @@ interface InitialLoaderProps {
   onFinish: () => void;
 }
 
-const TOTAL_FRAMES = 100;
+const TOTAL_FRAMES = 200;
 export const globalPreloadedFrames: HTMLImageElement[] = [];
 
 export const InitialLoader: React.FC<InitialLoaderProps> = ({ onFinish }) => {
@@ -19,12 +19,12 @@ export const InitialLoader: React.FC<InitialLoaderProps> = ({ onFinish }) => {
   const finishedRef = useRef<boolean>(false);
 
   useEffect(() => {
-    // 1. Preload 100 Frames into global memory
+    // 1. Preload 200 WebP Frames into global memory
     if (globalPreloadedFrames.length === 0) {
       for (let i = 0; i < TOTAL_FRAMES; i++) {
         const padded = String(i + 1).padStart(3, '0');
         const img = new Image();
-        img.src = `/frames/frame_${padded}.jpg`;
+        img.src = `/frames/frame_${padded}.webp`;
         img.onload = () => {
           framesLoadedRef.current += 1;
         };
