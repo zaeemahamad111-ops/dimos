@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import type { ProductItem } from '../data/siteData';
-import { X, Star, Check, Shield, Truck, Trees, MessageSquare, Phone, MapPin } from 'lucide-react';
+import { X, Star, Check, MessageSquare, Phone, MapPin } from 'lucide-react';
 
 interface ProductDetailModalProps {
   product: ProductItem | null;
@@ -40,12 +40,12 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
         position: 'fixed',
         inset: 0,
         zIndex: 1150,
-        backgroundColor: 'rgba(28, 27, 26, 0.65)',
+        backgroundColor: 'rgba(28, 27, 26, 0.7)',
         backdropFilter: 'blur(10px)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '20px',
+        padding: 'clamp(10px, 2.5vw, 24px)',
       }}
       onClick={onClose}
     >
@@ -53,12 +53,12 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
         className="animate-fade"
         style={{
           backgroundColor: '#ffffff',
-          borderRadius: 'var(--radius-card)',
+          borderRadius: '24px',
           maxWidth: '880px',
           width: '100%',
-          maxHeight: '90vh',
+          maxHeight: '92vh',
           overflowY: 'auto',
-          padding: 'clamp(24px, 4vw, 40px)',
+          padding: 'clamp(20px, 3.5vw, 36px)',
           position: 'relative',
           boxShadow: '0 24px 60px rgba(0,0,0,0.25)',
         }}
@@ -67,10 +67,11 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
         {/* Close Button */}
         <button
           onClick={onClose}
+          aria-label="Close Product Details"
           style={{
             position: 'absolute',
-            top: '20px',
-            right: '20px',
+            top: '16px',
+            right: '16px',
             width: '36px',
             height: '36px',
             borderRadius: '50%',
@@ -80,6 +81,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             justifyContent: 'center',
             color: 'var(--color-text-main)',
             cursor: 'pointer',
+            zIndex: 10,
           }}
         >
           <X size={18} />
@@ -88,8 +90,8 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            gap: '36px',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))',
+            gap: 'clamp(20px, 3vw, 36px)',
             alignItems: 'flex-start',
           }}
         >
@@ -97,15 +99,15 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
           <div>
             <div
               style={{
-                borderRadius: 'var(--radius-card-sm)',
+                borderRadius: '16px',
                 backgroundColor: 'var(--color-surface-soft)',
-                padding: '24px',
-                height: '340px',
+                padding: '20px',
+                height: 'clamp(220px, 32vw, 320px)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 overflow: 'hidden',
-                marginBottom: '12px',
+                marginBottom: '10px',
               }}
             >
               <img
@@ -127,10 +129,10 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                     key={idx}
                     onClick={() => setSelectedImage(img)}
                     style={{
-                      width: '64px',
-                      height: '64px',
+                      width: '56px',
+                      height: '56px',
                       borderRadius: '8px',
-                      padding: '4px',
+                      padding: '3px',
                       backgroundColor: 'var(--color-surface-soft)',
                       border: currentImage === img ? '2px solid var(--color-teak)' : '1px solid var(--color-border)',
                       overflow: 'hidden',
@@ -142,156 +144,135 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                 ))}
               </div>
             )}
-
-            {/* Timber Assurance Tag */}
-            <div
-              style={{
-                marginTop: '16px',
-                padding: '12px 16px',
-                borderRadius: '10px',
-                backgroundColor: 'var(--color-bg)',
-                border: '1px solid var(--color-border-light)',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '10px',
-              }}
-            >
-              <Trees size={18} color="var(--color-teak)" />
-              <div style={{ fontSize: '12px', color: 'var(--color-text-muted)', lineHeight: 1.4 }}>
-                <strong style={{ color: 'var(--color-text-main)' }}>Kiln-Seasoned Teakwood: </strong>
-                Moisture regulated for tropical coastal longevity.
-              </div>
-            </div>
           </div>
 
-          {/* Details & Specifications Column */}
+          {/* Details Column */}
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '6px' }}>
-              <span style={{ fontSize: '11px', fontWeight: 700, color: 'var(--color-teak)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
-                {product.category}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+              <span
+                style={{
+                  fontSize: '10.5px',
+                  fontWeight: 700,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.08em',
+                  color: 'var(--color-teak)',
+                }}
+              >
+                {product.number} • {product.category}
               </span>
-              <span style={{ color: 'var(--color-border)' }}>•</span>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '2px' }}>
-                <Star size={13} fill="#c5834e" color="#c5834e" />
-                <span style={{ fontSize: '12px', fontWeight: 600 }}>{product.rating}</span>
-                <span style={{ fontSize: '12px', color: 'var(--color-text-muted)' }}>({product.reviewsCount} Kerala client reviews)</span>
-              </div>
+              <span style={{ display: 'flex', alignItems: 'center', gap: '2px', fontSize: '11px', color: '#c5834e', fontWeight: 600 }}>
+                <Star size={12} fill="#c5834e" />
+                <span>4.9</span>
+              </span>
             </div>
 
-            <h2 className="font-melfira" style={{ fontSize: '24px', fontWeight: 'bold', color: 'var(--color-text-main)', marginBottom: '12px' }}>
+            <h2
+              className="font-melfira"
+              style={{
+                fontSize: 'clamp(22px, 3.5vw, 30px)',
+                fontWeight: 'bold',
+                color: 'var(--color-text-main)',
+                marginBottom: '8px',
+                lineHeight: 1.15,
+              }}
+            >
               {product.name}
             </h2>
 
-            <p style={{ fontSize: '14px', color: 'var(--color-text-body)', lineHeight: 1.65, marginBottom: '20px' }}>
+            <p style={{ fontSize: '13.5px', color: 'var(--color-text-body)', lineHeight: 1.6, marginBottom: '16px' }}>
               {product.description}
             </p>
 
-            {/* Architectural Specifications Box */}
+            {/* Specifications Matrix Table */}
             <div
               style={{
-                backgroundColor: 'var(--color-surface-card)',
-                borderRadius: 'var(--radius-card-sm)',
-                padding: '16px',
+                backgroundColor: 'var(--color-surface-soft)',
+                borderRadius: '12px',
+                padding: '14px',
+                marginBottom: '16px',
                 display: 'flex',
                 flexDirection: 'column',
-                gap: '10px',
-                fontSize: '13px',
-                marginBottom: '20px',
-                border: '1px solid var(--color-border-light)',
+                gap: '8px',
+                fontSize: '12.5px',
               }}
             >
-              <div>
-                <strong style={{ color: 'var(--color-text-main)' }}>Dimensions: </strong>
-                <span style={{ color: 'var(--color-text-muted)' }}>{product.dimensions}</span>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <span style={{ color: 'var(--color-text-muted)' }}>Timber Species:</span>
+                <strong style={{ color: 'var(--color-text-main)' }}>{product.woodType}</strong>
               </div>
-              <div>
-                <strong style={{ color: 'var(--color-text-main)' }}>Wood Grade: </strong>
-                <span style={{ color: 'var(--color-text-muted)' }}>{product.woodType}</span>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <span style={{ color: 'var(--color-text-muted)' }}>Dimensions (L×W×H):</span>
+                <strong style={{ color: 'var(--color-text-main)' }}>{product.dimensions}</strong>
               </div>
-              <div>
-                <strong style={{ color: 'var(--color-text-main)' }}>Artisan Finish: </strong>
-                <span style={{ color: 'var(--color-text-muted)' }}>{product.finish}</span>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <span style={{ color: 'var(--color-text-muted)' }}>Surface Finish:</span>
+                <strong style={{ color: 'var(--color-text-main)' }}>{product.finish}</strong>
               </div>
-              {product.idealFor && (
-                <div>
-                  <strong style={{ color: 'var(--color-text-main)' }}>Ideal Space: </strong>
-                  <span style={{ color: 'var(--color-text-muted)' }}>{product.idealFor}</span>
-                </div>
-              )}
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <span style={{ color: 'var(--color-text-muted)' }}>Seasoning:</span>
+                <strong style={{ color: 'var(--color-text-main)' }}>Kiln-Seasoned (10-12% Moisture)</strong>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <span style={{ color: 'var(--color-text-muted)' }}>Warranty:</span>
+                <strong style={{ color: 'var(--color-forest)' }}>10-Year Structural Guarantee</strong>
+              </div>
             </div>
 
-            {/* Key Craftsmanship Features */}
-            <div style={{ marginBottom: '24px' }}>
-              <div style={{ fontSize: '12px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '8px', color: 'var(--color-text-main)' }}>
-                Craftsmanship Highlights
+            {/* Key Features List */}
+            <div style={{ marginBottom: '20px' }}>
+              <div style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--color-text-muted)', marginBottom: '6px' }}>
+                Architectural Highlights:
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                {product.features.map((feat, i) => (
-                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13px', color: 'var(--color-text-body)' }}>
-                    <Check size={14} color="var(--color-teak)" />
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
+                {product.features.map((feat, idx) => (
+                  <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12px', color: 'var(--color-text-main)' }}>
+                    <Check size={13} color="var(--color-teak)" style={{ flexShrink: 0 }} />
                     <span>{feat}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Showroom Consultation & Custom Blueprint Inquiries */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+            {/* Action Buttons */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
               <button
                 onClick={handleWhatsAppEnquiry}
                 className="btn-pill-dark"
-                style={{ width: '100%', padding: '14px', fontSize: '12px', gap: '8px' }}
+                style={{
+                  width: '100%',
+                  padding: '13px',
+                  fontSize: '11.5px',
+                  gap: '8px',
+                  justifyContent: 'center',
+                }}
               >
-                <MessageSquare size={16} />
-                <span>Enquire on WhatsApp (+91 70259 36662)</span>
+                <MessageSquare size={14} />
+                <span>Enquire via WhatsApp</span>
               </button>
 
-              <div style={{ display: 'flex', gap: '10px' }}>
-                <button
-                  onClick={() => {
-                    onClose();
-                    if (onNavigate) onNavigate('showrooms');
-                  }}
-                  className="btn-pill-outline"
-                  style={{ flex: 1, padding: '10px', fontSize: '11px', gap: '6px' }}
-                >
-                  <MapPin size={13} color="var(--color-teak)" />
-                  <span>View in Showroom</span>
-                </button>
+              <div style={{ display: 'flex', gap: '8px' }}>
                 <a
                   href="tel:+917025936662"
                   className="btn-pill-outline"
-                  style={{ flex: 1, padding: '10px', fontSize: '11px', gap: '6px', textDecoration: 'none', color: 'inherit', textAlign: 'center' }}
+                  style={{ flex: 1, padding: '10px', fontSize: '11px', gap: '5px', justifyContent: 'center' }}
                 >
                   <Phone size={13} />
-                  <span>Call Showroom</span>
+                  <span>Call Consultant</span>
                 </a>
-              </div>
-            </div>
 
-            {/* Guarantee Trust Badges */}
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                paddingTop: '18px',
-                marginTop: '18px',
-                borderTop: '1px solid var(--color-border-light)',
-                fontSize: '11px',
-                color: 'var(--color-text-muted)',
-              }}
-            >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                <Shield size={13} color="var(--color-teak)" />
-                <span>10-Year Warranty</span>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                <Truck size={13} color="var(--color-teak)" />
-                <span>All-Kerala White Glove Setup</span>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                <Trees size={13} color="var(--color-teak)" />
-                <span>5 Kollam Showrooms</span>
+                {onNavigate && (
+                  <button
+                    onClick={() => {
+                      onClose();
+                      onNavigate('showrooms');
+                    }}
+                    className="btn-pill-outline"
+                    style={{ flex: 1, padding: '10px', fontSize: '11px', gap: '5px', justifyContent: 'center' }}
+                  >
+                    <MapPin size={13} />
+                    <span>Visit Showroom</span>
+                  </button>
+                )}
               </div>
             </div>
           </div>

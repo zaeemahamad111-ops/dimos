@@ -20,7 +20,7 @@ export const VideoModal: React.FC<VideoModalProps> = ({ isOpen, onClose }) => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '24px',
+        padding: 'clamp(12px, 3vw, 24px)',
       }}
       onClick={onClose}
     >
@@ -28,7 +28,7 @@ export const VideoModal: React.FC<VideoModalProps> = ({ isOpen, onClose }) => {
         className="animate-fade"
         style={{
           backgroundColor: '#1c1b1a',
-          borderRadius: 'var(--radius-card)',
+          borderRadius: '20px',
           maxWidth: '820px',
           width: '100%',
           overflow: 'hidden',
@@ -40,10 +40,11 @@ export const VideoModal: React.FC<VideoModalProps> = ({ isOpen, onClose }) => {
       >
         <button
           onClick={onClose}
+          aria-label="Close Video"
           style={{
             position: 'absolute',
-            top: '16px',
-            right: '16px',
+            top: '14px',
+            right: '14px',
             width: '36px',
             height: '36px',
             borderRadius: '50%',
@@ -61,28 +62,27 @@ export const VideoModal: React.FC<VideoModalProps> = ({ isOpen, onClose }) => {
 
         {/* Video Player Container */}
         <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', backgroundColor: '#000000' }}>
-          <iframe
-            width="100%"
-            height="100%"
-            src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&controls=1"
-            title="Kayujati Teak Workshop"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            style={{ display: 'block' }}
+          <video
+            src="/hero-animation.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            controls
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           />
         </div>
 
-        <div style={{ padding: '24px' }}>
-          <div style={{ fontSize: '11px', color: 'var(--color-teak-light)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
-            Artisan Documentary
+        <div style={{ padding: 'clamp(16px, 3vw, 24px)' }}>
+          <div style={{ fontSize: '11px', color: 'var(--color-teak-light)', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 700 }}>
+            Craftsmanship Documentary
           </div>
-          <h3 style={{ fontSize: '20px', fontWeight: 600, marginTop: '4px', marginBottom: '8px' }}>
-            Inside the Jepara Teak Workshop
+          <h3 className="font-melfira" style={{ fontSize: 'clamp(18px, 3vw, 22px)', fontWeight: 'bold', marginTop: '4px', marginBottom: '6px' }}>
+            Inside the Dimos Kerala Woodcraft Workshops
           </h3>
-          <p style={{ fontSize: '13px', color: 'var(--color-text-light)', lineHeight: 1.5 }}>
-            Witness three generations of master joinery, organic kiln drying, and hand-woven cane
-            craftsmanship that gives every Kayujati piece its enduring soul.
+          <p style={{ fontSize: '13px', color: 'var(--color-text-light)', lineHeight: 1.5, margin: 0 }}>
+            Witness three generations of master joinery, organic kiln drying, and hand-finished teak
+            craftsmanship that gives every Dimos piece its enduring soul.
           </p>
         </div>
       </div>

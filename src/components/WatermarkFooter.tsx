@@ -16,35 +16,35 @@ export const WatermarkFooter: React.FC<WatermarkFooterProps> = ({ onNavigate }) 
     <footer
       style={{
         backgroundColor: 'var(--color-bg)',
-        paddingTop: '32px',
+        paddingTop: 'clamp(24px, 4vw, 36px)',
         paddingBottom: '48px',
         position: 'relative',
         overflow: 'hidden',
       }}
     >
       <div className="container">
-        {/* Massive Monumental Watermark 'dimos' in Teko */}
+        {/* Massive Monumental Watermark 'dimos' in Melfira */}
         <div
           style={{
             userSelect: 'none',
             textAlign: 'center',
-            marginBottom: '32px',
+            marginBottom: 'clamp(20px, 4vw, 32px)',
             overflow: 'hidden',
             cursor: 'pointer',
           }}
           onClick={() => handleNav('home')}
         >
           <span
-            className="font-teko"
+            className="font-melfira"
             style={{
-              fontSize: 'clamp(90px, 22vw, 280px)',
-              fontWeight: 600,
-              letterSpacing: '0.02em',
+              fontSize: 'clamp(70px, 20vw, 240px)',
+              fontWeight: 'bold',
+              letterSpacing: '-0.02em',
               lineHeight: 0.85,
               color: 'var(--color-border)',
               display: 'inline-block',
-              textTransform: 'uppercase',
-              opacity: 0.9,
+              textTransform: 'lowercase',
+              opacity: 0.85,
               transition: 'color 0.3s ease',
             }}
             onMouseEnter={(e) => (e.currentTarget.style.color = '#e0d8cc')}
@@ -58,23 +58,23 @@ export const WatermarkFooter: React.FC<WatermarkFooterProps> = ({ onNavigate }) 
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-            gap: '40px',
-            paddingTop: '32px',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 200px), 1fr))',
+            gap: 'clamp(24px, 4vw, 40px)',
+            paddingTop: '28px',
             borderTop: '1px solid var(--color-border)',
-            marginBottom: '48px',
+            marginBottom: '40px',
           }}
         >
           {/* Brand Col */}
           <div>
-            <div style={{ marginBottom: '18px' }}>
+            <div style={{ marginBottom: '14px' }}>
               <img
                 src="/logo.png"
                 alt="Dimos Furniture"
                 style={{
-                  height: '46px',
+                  height: '38px',
                   width: 'auto',
-                  maxWidth: '240px',
+                  maxWidth: '220px',
                   objectFit: 'contain',
                   display: 'block',
                 }}
@@ -86,14 +86,14 @@ export const WatermarkFooter: React.FC<WatermarkFooterProps> = ({ onNavigate }) 
                 color: 'var(--color-text-muted)',
                 lineHeight: 1.55,
                 maxWidth: '280px',
-                marginBottom: '24px',
+                marginBottom: '20px',
               }}
             >
-              Kerala's most trusted and leading bespoke furniture brand since 2012. Crafting timeless living, dining, and bedroom spaces with 100% seasoned teakwood.
+              Kerala's leading bespoke furniture brand since 2012. Crafting timeless living, dining, and bedroom spaces with 100% seasoned teakwood.
             </p>
 
             {/* Social Icons */}
-            <div style={{ display: 'flex', gap: '10px' }}>
+            <div style={{ display: 'flex', gap: '8px' }}>
               {[
                 { name: 'ig', label: 'Instagram', href: 'https://instagram.com' },
                 { name: 'fb', label: 'Facebook', href: 'https://facebook.com' },
@@ -106,18 +106,17 @@ export const WatermarkFooter: React.FC<WatermarkFooterProps> = ({ onNavigate }) 
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.label}
-                  className="font-panchang"
                   style={{
-                    width: '32px',
-                    height: '32px',
+                    width: '34px',
+                    height: '34px',
                     borderRadius: '50%',
                     border: '1px solid var(--color-border)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     color: 'var(--color-text-body)',
-                    fontSize: '10px',
-                    fontWeight: 600,
+                    fontSize: '10.5px',
+                    fontWeight: 700,
                     textTransform: 'uppercase',
                     transition: 'all 0.2s ease',
                   }}
@@ -139,53 +138,51 @@ export const WatermarkFooter: React.FC<WatermarkFooterProps> = ({ onNavigate }) 
           {/* Navigation Links */}
           <div>
             <div
-              className="font-panchang"
+              className="font-melfira"
               style={{
-                fontSize: '11px',
-                fontWeight: 600,
+                fontSize: '14px',
+                fontWeight: 'bold',
                 color: 'var(--color-text-main)',
-                textTransform: 'uppercase',
-                letterSpacing: '0.08em',
-                marginBottom: '16px',
+                marginBottom: '14px',
               }}
             >
               Explore Collections
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '13px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '13px' }}>
               <button
                 onClick={() => handleNav('shop')}
                 className="hover-underline"
-                style={{ textAlign: 'left', color: 'var(--color-text-body)', border: 'none', background: 'none', cursor: 'pointer', padding: 0, fontSize: '13px' }}
+                style={{ textAlign: 'left', color: 'var(--color-text-body)', border: 'none', background: 'none', cursor: 'pointer', padding: '4px 0', fontSize: '13px' }}
               >
                 Handcrafted Furniture Catalog
               </button>
               <button
                 onClick={() => handleNav('gallery')}
                 className="hover-underline"
-                style={{ textAlign: 'left', color: 'var(--color-text-body)', border: 'none', background: 'none', cursor: 'pointer', padding: 0, fontSize: '13px' }}
+                style={{ textAlign: 'left', color: 'var(--color-text-body)', border: 'none', background: 'none', cursor: 'pointer', padding: '4px 0', fontSize: '13px' }}
               >
                 Architectural Gallery & Lookbook
               </button>
               <button
                 onClick={() => handleNav('offers')}
                 className="hover-underline"
-                style={{ textAlign: 'left', color: 'var(--color-text-body)', border: 'none', background: 'none', cursor: 'pointer', padding: 0, fontSize: '13px' }}
+                style={{ textAlign: 'left', color: 'var(--color-text-body)', border: 'none', background: 'none', cursor: 'pointer', padding: '4px 0', fontSize: '13px' }}
               >
                 Showroom Packages & Ensembles
               </button>
               <button
                 onClick={() => handleNav('about')}
                 className="hover-underline"
-                style={{ textAlign: 'left', color: 'var(--color-text-body)', border: 'none', background: 'none', cursor: 'pointer', padding: 0, fontSize: '13px' }}
+                style={{ textAlign: 'left', color: 'var(--color-text-body)', border: 'none', background: 'none', cursor: 'pointer', padding: '4px 0', fontSize: '13px' }}
               >
                 Artisanal Teak Quality & Heritage
               </button>
               <button
                 onClick={() => handleNav('showrooms')}
-                className="hover-underline font-panchang"
-                style={{ textAlign: 'left', color: 'var(--color-teak)', fontWeight: 600, fontSize: '11px', textTransform: 'uppercase', border: 'none', background: 'none', cursor: 'pointer', padding: 0 }}
+                className="hover-underline"
+                style={{ textAlign: 'left', color: 'var(--color-teak)', fontWeight: 700, fontSize: '12px', textTransform: 'uppercase', border: 'none', background: 'none', cursor: 'pointer', padding: '4px 0' }}
               >
-                5 Kollam Showrooms & Experience Centers →
+                5 Kollam Showrooms →
               </button>
             </div>
           </div>
@@ -193,20 +190,18 @@ export const WatermarkFooter: React.FC<WatermarkFooterProps> = ({ onNavigate }) 
           {/* Customer Support */}
           <div>
             <div
-              className="font-panchang"
+              className="font-melfira"
               style={{
-                fontSize: '11px',
-                fontWeight: 600,
+                fontSize: '14px',
+                fontWeight: 'bold',
                 color: 'var(--color-text-main)',
-                textTransform: 'uppercase',
-                letterSpacing: '0.08em',
-                marginBottom: '16px',
+                marginBottom: '14px',
               }}
             >
               Customer Support
             </div>
             <div style={{ fontSize: '13px', color: 'var(--color-text-body)', lineHeight: 1.6 }}>
-              <div style={{ fontWeight: 600, color: 'var(--color-text-main)' }}>+91 70259 36662</div>
+              <div style={{ fontWeight: 700, color: 'var(--color-text-main)' }}>+91 70259 36662</div>
               <div>+91 92880 98981</div>
               <div style={{ color: 'var(--color-teak)', marginTop: '4px' }}>info@dimosfurniture.in</div>
               <div style={{ marginTop: '8px', color: 'var(--color-text-muted)', fontSize: '12px' }}>
@@ -215,7 +210,7 @@ export const WatermarkFooter: React.FC<WatermarkFooterProps> = ({ onNavigate }) 
               <button
                 onClick={() => handleNav('contact')}
                 className="btn-pill-dark"
-                style={{ fontSize: '10px', padding: '6px 14px', marginTop: '12px' }}
+                style={{ fontSize: '10.5px', padding: '8px 16px', marginTop: '12px' }}
               >
                 Contact Us
               </button>
@@ -225,14 +220,12 @@ export const WatermarkFooter: React.FC<WatermarkFooterProps> = ({ onNavigate }) 
           {/* Showroom Locations */}
           <div>
             <div
-              className="font-panchang"
+              className="font-melfira"
               style={{
-                fontSize: '11px',
-                fontWeight: 600,
+                fontSize: '14px',
+                fontWeight: 'bold',
                 color: 'var(--color-text-main)',
-                textTransform: 'uppercase',
-                letterSpacing: '0.08em',
-                marginBottom: '16px',
+                marginBottom: '14px',
               }}
             >
               Showrooms in Kerala
@@ -242,8 +235,8 @@ export const WatermarkFooter: React.FC<WatermarkFooterProps> = ({ onNavigate }) 
               <div style={{ marginTop: '6px' }}><strong>Branches:</strong> Pallimukku, Karunagappalli, Bharanikavu & Thattamala</div>
               <button
                 onClick={() => handleNav('showrooms')}
-                className="hover-underline font-panchang"
-                style={{ textAlign: 'left', color: 'var(--color-teak)', fontWeight: 600, fontSize: '11px', textTransform: 'uppercase', border: 'none', background: 'none', cursor: 'pointer', padding: 0, marginTop: '10px' }}
+                className="hover-underline"
+                style={{ textAlign: 'left', color: 'var(--color-teak)', fontWeight: 700, fontSize: '12px', textTransform: 'uppercase', border: 'none', background: 'none', cursor: 'pointer', padding: '4px 0', marginTop: '10px' }}
               >
                 View All 5 Showroom Maps →
               </button>
@@ -262,12 +255,12 @@ export const WatermarkFooter: React.FC<WatermarkFooterProps> = ({ onNavigate }) 
             borderTop: '1px solid var(--color-border-light)',
             fontSize: '12px',
             color: 'var(--color-text-muted)',
-            gap: '16px',
+            gap: '12px',
           }}
         >
           <div>© {new Date().getFullYear()} Dimos Furniture (New Dimos Furniture Pvt Ltd). All rights reserved.</div>
 
-          <div style={{ display: 'flex', gap: '20px' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px' }}>
             <span>Privacy Policy</span>
             <span>Terms of Service</span>
             <span>All-Kerala White Glove Delivery</span>

@@ -22,9 +22,9 @@ export const LatestFurniture: React.FC<LatestFurnitureProps> = ({
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'flex-end',
-            marginBottom: '48px',
+            marginBottom: 'clamp(28px, 4vw, 44px)',
             flexWrap: 'wrap',
-            gap: '20px',
+            gap: '16px',
           }}
         >
           <div>
@@ -34,7 +34,7 @@ export const LatestFurniture: React.FC<LatestFurnitureProps> = ({
             <h2
               className="text-section-title"
               style={{
-                fontSize: 'clamp(34px, 5vw, 54px)',
+                fontSize: 'clamp(28px, 4.5vw, 52px)',
                 fontWeight: 'bold',
                 marginBottom: '4px',
               }}
@@ -57,8 +57,8 @@ export const LatestFurniture: React.FC<LatestFurnitureProps> = ({
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
-            gap: '24px',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 210px), 1fr))',
+            gap: 'clamp(16px, 3vw, 24px)',
           }}
         >
           {displayedProducts.map((product) => (
@@ -75,10 +75,10 @@ export const LatestFurniture: React.FC<LatestFurnitureProps> = ({
               {/* Product Number Label */}
               <div
                 style={{
-                  fontSize: '11px',
+                  fontSize: '10.5px',
                   fontWeight: 600,
                   color: 'var(--color-text-muted)',
-                  marginBottom: '8px',
+                  marginBottom: '6px',
                   letterSpacing: '0.08em',
                   textTransform: 'uppercase',
                 }}
@@ -92,13 +92,13 @@ export const LatestFurniture: React.FC<LatestFurnitureProps> = ({
                   position: 'relative',
                   backgroundColor: 'var(--color-surface-soft)',
                   borderRadius: 'var(--radius-card-sm)',
-                  height: '270px',
+                  height: 'clamp(220px, 32vw, 270px)',
                   overflow: 'hidden',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  padding: '20px',
-                  marginBottom: '14px',
+                  padding: '18px',
+                  marginBottom: '12px',
                   transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
                   border: '1px solid rgba(0,0,0,0.03)',
                 }}
@@ -131,23 +131,22 @@ export const LatestFurniture: React.FC<LatestFurnitureProps> = ({
                 <div
                   style={{
                     position: 'absolute',
-                    bottom: '12px',
-                    right: '12px',
-                    padding: '6px 12px',
+                    bottom: '10px',
+                    right: '10px',
+                    padding: '5px 10px',
                     borderRadius: 'var(--radius-pill)',
                     backgroundColor: 'rgba(28, 27, 26, 0.85)',
                     backdropFilter: 'blur(8px)',
                     color: '#ffffff',
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '6px',
-                    fontSize: '10.5px',
+                    gap: '5px',
+                    fontSize: '10px',
                     fontWeight: 600,
                     boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
-                    transition: 'all 0.2s',
                   }}
                 >
-                  <Eye size={12} />
+                  <Eye size={11} />
                   <span>View Specs</span>
                 </div>
               </div>
@@ -160,13 +159,13 @@ export const LatestFurniture: React.FC<LatestFurnitureProps> = ({
                     fontSize: '16px',
                     fontWeight: 'bold',
                     color: 'var(--color-text-main)',
-                    marginBottom: '4px',
+                    marginBottom: '3px',
                     lineHeight: 1.3,
                   }}
                 >
                   {product.name}
                 </h3>
-                <div style={{ fontSize: '12px', color: 'var(--color-teak-dark)', fontWeight: 500, marginBottom: '2px' }}>
+                <div style={{ fontSize: '12px', color: 'var(--color-teak-dark)', fontWeight: 600, marginBottom: '2px' }}>
                   {product.woodType}
                 </div>
                 <div style={{ fontSize: '11.5px', color: 'var(--color-text-muted)' }}>

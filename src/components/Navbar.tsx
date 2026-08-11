@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, Search, X, Phone, MessageSquare } from 'lucide-react';
+import { Menu, Search, X, Phone, MessageSquare, MapPin } from 'lucide-react';
 
 interface NavbarProps {
   currentPage: string;
@@ -17,7 +17,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 40);
+      setIsScrolled(window.scrollY > 30);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -46,11 +46,11 @@ export const Navbar: React.FC<NavbarProps> = ({
       <header
         style={{
           position: 'fixed',
-          top: isScrolled ? '12px' : '18px',
+          top: isScrolled ? '8px' : '14px',
           left: '50%',
           transform: 'translateX(-50%)',
           zIndex: 900,
-          width: 'clamp(320px, 94vw, 1340px)',
+          width: 'clamp(300px, 94vw, 1340px)',
           transition: 'all 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
           pointerEvents: 'none',
         }}
@@ -58,29 +58,29 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div
           style={{
             pointerEvents: 'auto',
-            height: isScrolled ? '64px' : '72px',
+            height: isScrolled ? '58px' : '66px',
             borderRadius: 'var(--radius-pill)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            padding: isScrolled ? '0 18px 0 22px' : '0 26px',
+            padding: isScrolled ? '0 12px 0 16px' : '0 16px 0 20px',
             backgroundColor: isScrolled || currentPage !== 'home'
-              ? 'rgba(251, 249, 246, 0.95)'
-              : 'rgba(28, 27, 26, 0.55)',
+              ? 'rgba(251, 249, 246, 0.96)'
+              : 'rgba(28, 27, 26, 0.65)',
             backdropFilter: 'blur(16px)',
             WebkitBackdropFilter: 'blur(16px)',
             border: isScrolled || currentPage !== 'home'
               ? '1px solid rgba(0, 0, 0, 0.08)'
               : '1px solid rgba(255, 255, 255, 0.2)',
             boxShadow: isScrolled || currentPage !== 'home'
-              ? '0 12px 32px rgba(28, 27, 26, 0.08), 0 2px 6px rgba(0,0,0,0.04)'
-              : '0 8px 32px rgba(0, 0, 0, 0.25)',
+              ? '0 10px 28px rgba(28, 27, 26, 0.08), 0 2px 6px rgba(0,0,0,0.04)'
+              : '0 8px 32px rgba(0, 0, 0, 0.3)',
             color: isScrolled || currentPage !== 'home' ? 'var(--color-text-main)' : '#ffffff',
             transition: 'all 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
           }}
         >
           {/* Left: Hamburger & Brand */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <button
               onClick={() => setIsMenuOpen(true)}
               aria-label="Open Navigation Menu"
@@ -91,11 +91,12 @@ export const Navbar: React.FC<NavbarProps> = ({
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                backgroundColor: isScrolled || currentPage !== 'home' ? 'rgba(0,0,0,0.04)' : 'rgba(255,255,255,0.15)',
+                backgroundColor: isScrolled || currentPage !== 'home' ? 'rgba(0,0,0,0.04)' : 'rgba(255,255,255,0.16)',
                 color: 'currentColor',
                 transition: 'transform 0.2s, background-color 0.2s',
+                flexShrink: 0,
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.08)')}
+              onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.06)')}
               onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1.0)')}
             >
               <Menu size={18} strokeWidth={2} />
@@ -110,7 +111,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: '10px',
+                gap: '8px',
                 textDecoration: 'none',
               }}
             >
@@ -118,9 +119,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                 src={isScrolled || currentPage !== 'home' ? '/logo.png' : '/logo-white.png'}
                 alt="Dimos Furniture"
                 style={{
-                  height: isScrolled ? '34px' : '40px',
+                  height: isScrolled ? '28px' : '34px',
                   width: 'auto',
-                  maxWidth: '220px',
+                  maxWidth: 'clamp(110px, 32vw, 210px)',
                   objectFit: 'contain',
                   transition: 'all 0.3s ease',
                   display: 'block',
@@ -134,7 +135,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '4px',
+              gap: '2px',
             }}
             className="navbar-desktop-links"
           >
@@ -169,7 +170,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </nav>
 
           {/* Right Actions: Search & Showroom WhatsApp Hotline */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <button
               onClick={onOpenSearch}
               aria-label="Search Collections"
@@ -180,12 +181,13 @@ export const Navbar: React.FC<NavbarProps> = ({
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                backgroundColor: isScrolled || currentPage !== 'home' ? 'rgba(0,0,0,0.04)' : 'rgba(255,255,255,0.12)',
+                backgroundColor: isScrolled || currentPage !== 'home' ? 'rgba(0,0,0,0.04)' : 'rgba(255,255,255,0.14)',
                 color: 'currentColor',
                 transition: 'all 0.2s',
                 cursor: 'pointer',
+                flexShrink: 0,
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.08)')}
+              onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.06)')}
               onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1.0)')}
               title="Search Catalog"
             >
@@ -199,10 +201,10 @@ export const Navbar: React.FC<NavbarProps> = ({
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '6px',
-                padding: '8px 16px',
+                gap: '5px',
+                padding: '7px 14px',
                 borderRadius: 'var(--radius-pill)',
-                backgroundColor: isScrolled || currentPage !== 'home' ? 'var(--color-teak)' : 'rgba(255,255,255,0.92)',
+                backgroundColor: isScrolled || currentPage !== 'home' ? 'var(--color-teak)' : 'rgba(255,255,255,0.94)',
                 color: isScrolled || currentPage !== 'home' ? '#ffffff' : 'var(--color-text-main)',
                 fontSize: '11px',
                 fontWeight: 700,
@@ -210,6 +212,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 textTransform: 'uppercase',
                 textDecoration: 'none',
                 transition: 'all 0.2s ease',
+                flexShrink: 0,
               }}
               onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.03)')}
               onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1.0)')}
@@ -221,14 +224,14 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
       </header>
 
-      {/* Slide-out Mobile & Desktop Full Navigation Menu */}
+      {/* Slide-out Mobile Navigation Drawer */}
       {isMenuOpen && (
         <div
           style={{
             position: 'fixed',
             inset: 0,
             zIndex: 1200,
-            backgroundColor: 'rgba(28, 27, 26, 0.55)',
+            backgroundColor: 'rgba(28, 27, 26, 0.6)',
             backdropFilter: 'blur(10px)',
             display: 'flex',
           }}
@@ -237,15 +240,15 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div
             className="animate-drawer"
             style={{
-              width: '100%',
-              maxWidth: '380px',
+              width: 'min(86vw, 360px)',
               height: '100%',
               backgroundColor: 'var(--color-surface)',
-              padding: '32px 28px',
+              padding: '24px 20px',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'space-between',
-              boxShadow: '8px 0 36px rgba(0,0,0,0.15)',
+              boxShadow: '8px 0 36px rgba(0,0,0,0.18)',
+              overflowY: 'auto',
             }}
             onClick={(e) => e.stopPropagation()}
           >
@@ -256,24 +259,25 @@ export const Navbar: React.FC<NavbarProps> = ({
                   display: 'flex',
                   justifyContent: 'space-between',
                   alignItems: 'center',
-                  paddingBottom: '20px',
+                  paddingBottom: '16px',
                   borderBottom: '1px solid var(--color-border)',
-                  marginBottom: '28px',
+                  marginBottom: '20px',
                 }}
               >
                 <img
                   src="/logo.png"
                   alt="Dimos Furniture"
                   style={{
-                    height: '42px',
+                    height: '34px',
                     width: 'auto',
-                    maxWidth: '220px',
+                    maxWidth: '180px',
                     objectFit: 'contain',
                     display: 'block',
                   }}
                 />
                 <button
                   onClick={() => setIsMenuOpen(false)}
+                  aria-label="Close Navigation Menu"
                   style={{
                     width: '36px',
                     height: '36px',
@@ -291,7 +295,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               </div>
 
               {/* Navigation Links */}
-              <nav style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              <nav style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                 {NAV_LINKS.map((link) => {
                   const isActive = currentPage === link.id;
                   return (
@@ -299,19 +303,20 @@ export const Navbar: React.FC<NavbarProps> = ({
                       key={link.id}
                       onClick={() => handleNavClick(link.id)}
                       style={{
-                        padding: '12px 16px',
+                        padding: '12px 14px',
                         borderRadius: 'var(--radius-card-sm)',
                         backgroundColor: isActive ? 'var(--color-surface-soft)' : 'transparent',
                         color: isActive ? 'var(--color-teak)' : 'var(--color-text-main)',
                         textAlign: 'left',
                         fontSize: '13px',
-                        fontWeight: 600,
+                        fontWeight: 700,
                         textTransform: 'uppercase',
                         letterSpacing: '0.04em',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'space-between',
                         cursor: 'pointer',
+                        minHeight: '44px',
                       }}
                     >
                       <span>{link.label}</span>
@@ -325,31 +330,57 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Drawer Bottom Info */}
             <div
               style={{
-                paddingTop: '24px',
+                paddingTop: '20px',
                 borderTop: '1px solid var(--color-border)',
-                fontSize: '13px',
+                fontSize: '12.5px',
                 color: 'var(--color-text-muted)',
               }}
             >
-              <div style={{ fontWeight: 600, color: 'var(--color-text-main)', marginBottom: '4px' }}>
-                Kerala Experience Centers
+              <div style={{ fontWeight: 700, color: 'var(--color-text-main)', marginBottom: '4px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <MapPin size={14} color="var(--color-teak)" />
+                <span>5 Kerala Showrooms</span>
               </div>
-              <div>Chandanathope • Pallimukku • Karunagappalli • Bharanikavu • Thattamala</div>
-              <a
-                href="tel:+917025936662"
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  marginTop: '16px',
-                  color: 'var(--color-teak)',
-                  fontWeight: 600,
-                  textDecoration: 'none',
-                }}
-              >
-                <Phone size={14} />
-                <span>+91 70259 36662</span>
-              </a>
+              <div style={{ lineHeight: 1.4, marginBottom: '14px', fontSize: '11.5px' }}>
+                Chandanathope • Pallimukku • Karunagappalli • Bharanikavu • Thattamala
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <a
+                  href="tel:+917025936662"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '8px',
+                    padding: '10px',
+                    borderRadius: 'var(--radius-pill)',
+                    backgroundColor: 'var(--color-surface-soft)',
+                    color: 'var(--color-text-main)',
+                    fontWeight: 700,
+                    fontSize: '12px',
+                    textDecoration: 'none',
+                  }}
+                >
+                  <Phone size={14} color="var(--color-teak)" />
+                  <span>Call Helpline: +91 70259 36662</span>
+                </a>
+
+                <a
+                  href="https://wa.me/917025936662?text=Hello%20Dimos%20Furniture,%20I%20would%20like%20to%20enquire%20about%20your%20furniture%20collections."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-pill-dark"
+                  style={{
+                    padding: '10px',
+                    fontSize: '11.5px',
+                    width: '100%',
+                    minHeight: '40px',
+                  }}
+                >
+                  <MessageSquare size={14} />
+                  <span>WhatsApp Consultation</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>

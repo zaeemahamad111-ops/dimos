@@ -31,12 +31,12 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         position: 'fixed',
         inset: 0,
         zIndex: 1200,
-        backgroundColor: 'rgba(28, 27, 26, 0.55)',
+        backgroundColor: 'rgba(28, 27, 26, 0.65)',
         backdropFilter: 'blur(10px)',
         display: 'flex',
         alignItems: 'flex-start',
         justifyContent: 'center',
-        padding: '80px 20px 20px',
+        padding: 'clamp(24px, 10vw, 80px) 16px 20px',
       }}
       onClick={onClose}
     >
@@ -44,12 +44,12 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         className="animate-fade"
         style={{
           backgroundColor: '#ffffff',
-          borderRadius: 'var(--radius-card)',
+          borderRadius: '20px',
           maxWidth: '640px',
           width: '100%',
-          maxHeight: '80vh',
+          maxHeight: '84vh',
           overflowY: 'auto',
-          padding: '28px',
+          padding: 'clamp(18px, 3.5vw, 28px)',
           position: 'relative',
           boxShadow: '0 24px 60px rgba(0,0,0,0.25)',
         }}
@@ -57,12 +57,13 @@ export const SearchModal: React.FC<SearchModalProps> = ({
       >
         <button
           onClick={onClose}
+          aria-label="Close Search"
           style={{
             position: 'absolute',
-            top: '20px',
-            right: '20px',
-            width: '32px',
-            height: '32px',
+            top: '16px',
+            right: '16px',
+            width: '34px',
+            height: '34px',
             borderRadius: '50%',
             backgroundColor: 'var(--color-surface-soft)',
             display: 'flex',
@@ -74,32 +75,32 @@ export const SearchModal: React.FC<SearchModalProps> = ({
           <X size={16} />
         </button>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px', paddingBottom: '12px', borderBottom: '1px solid var(--color-border)' }}>
-          <Search size={20} color="var(--color-text-muted)" />
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '18px', paddingBottom: '10px', borderBottom: '1px solid var(--color-border)', paddingRight: '36px' }}>
+          <Search size={18} color="var(--color-text-muted)" style={{ flexShrink: 0 }} />
           <input
             autoFocus
             type="text"
-            placeholder="Search teak lounge chairs, dining tables, beds..."
+            placeholder="Search teak chairs, tables, beds..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             style={{
               width: '100%',
               border: 'none',
               outline: 'none',
-              fontSize: '16px',
+              fontSize: '15px',
               fontFamily: 'inherit',
             }}
           />
         </div>
 
         {/* Quick Suggestion Chips */}
-        <div style={{ display: 'flex', gap: '6px', marginBottom: '20px', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', gap: '6px', marginBottom: '18px', flexWrap: 'wrap' }}>
           {['Lounge Chair', 'Dining Table', 'King Bed', 'Study Desk', 'Teakwood'].map((tag) => (
             <button
               key={tag}
               onClick={() => setQuery(tag)}
               style={{
-                padding: '4px 12px',
+                padding: '5px 12px',
                 borderRadius: 'var(--radius-pill)',
                 backgroundColor: 'var(--color-surface-soft)',
                 fontSize: '11px',
@@ -115,9 +116,9 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         </div>
 
         {/* Results */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
           {filtered.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '32px', color: 'var(--color-text-muted)', fontSize: '14px' }}>
+            <div style={{ textAlign: 'center', padding: '28px', color: 'var(--color-text-muted)', fontSize: '13.5px' }}>
               No pieces match your search query. Try searching for "Teak" or "Dining".
             </div>
           ) : (
@@ -131,16 +132,16 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                 style={{
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '14px',
-                  padding: '12px',
-                  borderRadius: 'var(--radius-card-sm)',
+                  gap: '12px',
+                  padding: '10px',
+                  borderRadius: '12px',
                   backgroundColor: 'var(--color-surface-card)',
                   cursor: 'pointer',
                   transition: 'all 0.2s',
                   border: '1px solid var(--color-border-light)',
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = 'var(--color-surface-soft)';
+                  e.currentTarget.style.backgroundColor = '#ede7de';
                   e.currentTarget.style.borderColor = 'var(--color-teak)';
                 }}
                 onMouseLeave={(e) => {
@@ -148,24 +149,40 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                   e.currentTarget.style.borderColor = 'var(--color-border-light)';
                 }}
               >
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  style={{ width: '56px', height: '56px', objectFit: 'contain', borderRadius: '6px', backgroundColor: '#ffffff' }}
-                />
+                <div
+                  style={{
+                    width: '54px',
+                    height: '54px',
+                    borderRadius: '8px',
+                    backgroundColor: 'var(--color-surface-soft)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0,
+                    padding: '4px',
+                  }}
+                >
+                  <img src={item.image} alt={item.name} style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain' }} />
+                </div>
+
                 <div style={{ flex: 1 }}>
-                  <h4 className="font-melfira" style={{ fontSize: '15px', fontWeight: 'bold', margin: '0 0 2px 0' }}>
+                  <h4
+                    className="font-melfira"
+                    style={{
+                      fontSize: '14px',
+                      fontWeight: 'bold',
+                      color: 'var(--color-text-main)',
+                      marginBottom: '2px',
+                    }}
+                  >
                     {item.name}
                   </h4>
-                  <div style={{ fontSize: '12px', color: 'var(--color-text-muted)' }}>
-                    {item.woodType} • {item.category}
+                  <div style={{ fontSize: '11.5px', color: 'var(--color-text-muted)' }}>
+                    {item.category} • {item.woodType}
                   </div>
                 </div>
 
-                <span style={{ fontSize: '11px', fontWeight: 700, color: 'var(--color-teak)', textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                  <span>View Specs</span>
-                  <ArrowRight size={12} />
-                </span>
+                <ArrowRight size={14} color="var(--color-teak)" />
               </div>
             ))
           )}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, TreePine, Award } from 'lucide-react';
+import { X, Trees, Award } from 'lucide-react';
 
 interface LearnMoreModalProps {
   isOpen: boolean;
@@ -18,12 +18,12 @@ export const LearnMoreModal: React.FC<LearnMoreModalProps> = ({ isOpen, type, on
         position: 'fixed',
         inset: 0,
         zIndex: 1200,
-        backgroundColor: 'rgba(28, 27, 26, 0.6)',
+        backgroundColor: 'rgba(28, 27, 26, 0.7)',
         backdropFilter: 'blur(10px)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '20px',
+        padding: 'clamp(12px, 3vw, 24px)',
       }}
       onClick={onClose}
     >
@@ -31,12 +31,12 @@ export const LearnMoreModal: React.FC<LearnMoreModalProps> = ({ isOpen, type, on
         className="animate-fade"
         style={{
           backgroundColor: '#ffffff',
-          borderRadius: 'var(--radius-card)',
+          borderRadius: '24px',
           maxWidth: '620px',
           width: '100%',
-          maxHeight: '85vh',
+          maxHeight: '88vh',
           overflowY: 'auto',
-          padding: 'clamp(28px, 4vw, 40px)',
+          padding: 'clamp(20px, 4vw, 36px)',
           position: 'relative',
           boxShadow: '0 24px 60px rgba(0,0,0,0.25)',
         }}
@@ -44,12 +44,13 @@ export const LearnMoreModal: React.FC<LearnMoreModalProps> = ({ isOpen, type, on
       >
         <button
           onClick={onClose}
+          aria-label="Close modal"
           style={{
             position: 'absolute',
-            top: '20px',
-            right: '20px',
-            width: '36px',
-            height: '36px',
+            top: '16px',
+            right: '16px',
+            width: '34px',
+            height: '34px',
             borderRadius: '50%',
             backgroundColor: 'var(--color-surface-soft)',
             display: 'flex',
@@ -63,66 +64,66 @@ export const LearnMoreModal: React.FC<LearnMoreModalProps> = ({ isOpen, type, on
 
         {isQuality ? (
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--color-teak)', marginBottom: '8px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--color-teak)', marginBottom: '6px' }}>
               <Award size={18} />
-              <span className="text-overline" style={{ color: 'var(--color-teak)' }}>Two Decades of Craftsmanship</span>
+              <span className="text-overline" style={{ color: 'var(--color-teak)' }}>Over a Decade of Kerala Craftsmanship</span>
             </div>
-            <h2 style={{ fontSize: '26px', fontWeight: 600, color: 'var(--color-text-main)', marginBottom: '16px' }}>
+            <h2 className="font-melfira" style={{ fontSize: 'clamp(22px, 3.5vw, 28px)', fontWeight: 'bold', color: 'var(--color-text-main)', marginBottom: '12px' }}>
               Quality Keeps Us Moving Forward.
             </h2>
-            <p style={{ fontSize: '14px', color: 'var(--color-text-body)', lineHeight: 1.65, marginBottom: '20px' }}>
-              Founded in the artisanal heartland of Jepara, Central Java, Kayujati bridges age-old
-              Javanese woodcraft with Japanese minimalist proportion. Every piece is constructed
-              with kiln-dried heartwood teak that naturally repels moisture, termites, and seasonal warping.
+            <p style={{ fontSize: '13.5px', color: 'var(--color-text-body)', lineHeight: 1.65, marginBottom: '16px' }}>
+              Established in Kollam, Kerala, Dimos Furniture bridges generational carpentry traditions
+              with modern architectural precision. Every piece is constructed with 100% kiln-dried
+              Nilambur teakwood that naturally resists tropical moisture, termites, and seasonal expansion.
             </p>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '24px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '20px' }}>
               {[
-                { title: 'Zero Synthetic Adhesives', desc: 'True mortise and tenon joinery tested under 300kg dynamic stress loads.' },
-                { title: 'Organic Matte Oil Finishes', desc: 'Beeswax and cold-pressed linseed oils that let natural teak breathe.' },
-                { title: 'Export-Grade Verification', desc: 'Over 10 million furniture items delivered across Europe, Japan, and North America.' },
+                { title: 'Zero Synthetic Boards', desc: '100% authentic Nilambur teak and Kerala rosewood heartwood.' },
+                { title: 'Artisanal Matte Wax Finishes', desc: 'Zero-VOC beeswax and natural oil sealants that highlight golden teak grains.' },
+                { title: '10-Year Termite & Timber Guarantee', desc: 'Backed by our 5 Kollam experience centers across Kerala.' },
               ].map((item, idx) => (
-                <div key={idx} style={{ padding: '12px 16px', backgroundColor: 'var(--color-surface-card)', borderRadius: 'var(--radius-card-sm)' }}>
-                  <div style={{ fontWeight: 600, fontSize: '13px', color: 'var(--color-text-main)' }}>{item.title}</div>
+                <div key={idx} style={{ padding: '12px 14px', backgroundColor: 'var(--color-surface-card)', borderRadius: '12px' }}>
+                  <div style={{ fontWeight: 700, fontSize: '13px', color: 'var(--color-text-main)' }}>{item.title}</div>
                   <div style={{ fontSize: '12px', color: 'var(--color-text-muted)', marginTop: '2px' }}>{item.desc}</div>
                 </div>
               ))}
             </div>
 
-            <button onClick={onClose} className="btn-pill-dark" style={{ width: '100%' }}>
-              Back to Catalog
+            <button onClick={onClose} className="btn-pill-dark" style={{ width: '100%', padding: '12px', fontSize: '11.5px' }}>
+              Back to Showroom
             </button>
           </div>
         ) : (
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--color-forest)', marginBottom: '8px' }}>
-              <TreePine size={18} />
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--color-forest)', marginBottom: '6px' }}>
+              <Trees size={18} />
               <span className="text-overline" style={{ color: 'var(--color-forest)' }}>Responsible Forestry</span>
             </div>
-            <h2 style={{ fontSize: '26px', fontWeight: 600, color: 'var(--color-text-main)', marginBottom: '16px' }}>
+            <h2 className="font-melfira" style={{ fontSize: 'clamp(22px, 3.5vw, 28px)', fontWeight: 'bold', color: 'var(--color-text-main)', marginBottom: '12px' }}>
               Sourced From Sustainable Forests.
             </h2>
-            <p style={{ fontSize: '14px', color: 'var(--color-text-body)', lineHeight: 1.65, marginBottom: '20px' }}>
-              We partner exclusively with certified Perum Perhutani state plantations and FSC-accredited
-              concessions in Central Java. For every mature teak tree harvested for our collections,
-              ten native seedlings are planted to regenerate canopy density.
+            <p style={{ fontSize: '13.5px', color: 'var(--color-text-body)', lineHeight: 1.65, marginBottom: '16px' }}>
+              We partner with regulated Kerala government timber plantations in Nilambur.
+              Every tree harvested is replenished through structured reforestation initiatives,
+              ensuring zero deforestation and protecting the natural bio-diversity of Kerala.
             </p>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '24px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '20px' }}>
               {[
-                { title: 'FSC® 100% Certified Chain of Custody', desc: 'Full digital traceability from seedling forest plot to your doorstep.' },
-                { title: 'SVLK Indonesian Legal Wood Certification', desc: 'Compliant with strict international timber legality assurance systems.' },
-                { title: 'Zero Waste Production Cycle', desc: 'All teak offcuts are repurposed into architectural tiles, joinery pins, and bio-fuel.' },
+                { title: '100% Legal & Documented Plantation Timber', desc: 'Full traceability from Kerala forestry auctions to our workshops.' },
+                { title: 'Solar & Steam Kiln Seasoning', desc: 'Moisture reduction using eco-conscious drying chambers.' },
+                { title: 'Zero Waste Production Cycle', desc: 'All timber offcuts are upcycled into handcrafted trays and woodcraft accents.' },
               ].map((item, idx) => (
-                <div key={idx} style={{ padding: '12px 16px', backgroundColor: 'var(--color-surface-card)', borderRadius: 'var(--radius-card-sm)' }}>
-                  <div style={{ fontWeight: 600, fontSize: '13px', color: 'var(--color-text-main)' }}>{item.title}</div>
+                <div key={idx} style={{ padding: '12px 14px', backgroundColor: 'var(--color-surface-card)', borderRadius: '12px' }}>
+                  <div style={{ fontWeight: 700, fontSize: '13px', color: 'var(--color-text-main)' }}>{item.title}</div>
                   <div style={{ fontSize: '12px', color: 'var(--color-text-muted)', marginTop: '2px' }}>{item.desc}</div>
                 </div>
               ))}
             </div>
 
-            <button onClick={onClose} className="btn-pill-dark" style={{ width: '100%' }}>
-              Back to Catalog
+            <button onClick={onClose} className="btn-pill-dark" style={{ width: '100%', padding: '12px', fontSize: '11.5px' }}>
+              Back to Showroom
             </button>
           </div>
         )}

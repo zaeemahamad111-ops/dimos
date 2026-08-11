@@ -49,7 +49,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               flexWrap: 'wrap',
               justifyContent: 'space-between',
               alignItems: 'flex-end',
-              marginBottom: '40px',
+              marginBottom: 'clamp(28px, 4vw, 40px)',
               gap: '16px',
             }}
           >
@@ -59,7 +59,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               </div>
               <h2
                 className="text-section-title"
-                style={{ fontSize: 'clamp(34px, 5vw, 54px)', marginBottom: '4px' }}
+                style={{ fontSize: 'clamp(28px, 4.5vw, 52px)', marginBottom: '4px' }}
               >
                 Experience Dimos in Kollam
               </h2>
@@ -81,8 +81,8 @@ export const HomePage: React.FC<HomePageProps> = ({
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-              gap: '24px',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))',
+              gap: '20px',
             }}
           >
             {SHOWROOMS.slice(0, 3).map((showroom) => (
@@ -107,7 +107,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                   e.currentTarget.style.boxShadow = 'var(--shadow-sm)';
                 }}
               >
-                <div style={{ position: 'relative', height: '200px', overflow: 'hidden' }}>
+                <div style={{ position: 'relative', height: '190px', overflow: 'hidden' }}>
                   <img
                     src={showroom.image}
                     alt={showroom.name}
@@ -133,7 +133,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                   </div>
                 </div>
 
-                <div style={{ padding: '24px' }}>
+                <div style={{ padding: '20px' }}>
                   <h3
                     className="font-melfira"
                     style={{
@@ -146,17 +146,17 @@ export const HomePage: React.FC<HomePageProps> = ({
                     {showroom.name}
                   </h3>
 
-                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', marginBottom: '8px', fontSize: '13px', color: 'var(--color-text-body)' }}>
-                    <MapPin size={15} color="var(--color-teak)" style={{ flexShrink: 0, marginTop: '2px' }} />
+                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', marginBottom: '8px', fontSize: '12.5px', color: 'var(--color-text-body)' }}>
+                    <MapPin size={14} color="var(--color-teak)" style={{ flexShrink: 0, marginTop: '2px' }} />
                     <span>{showroom.address}, {showroom.city} - {showroom.pincode}</span>
                   </div>
 
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px', fontSize: '13px', color: 'var(--color-text-body)', fontWeight: 500 }}>
-                    <Phone size={15} color="var(--color-teak)" style={{ flexShrink: 0 }} />
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '14px', fontSize: '12.5px', color: 'var(--color-text-body)', fontWeight: 600 }}>
+                    <Phone size={14} color="var(--color-teak)" style={{ flexShrink: 0 }} />
                     <span>{showroom.phone}</span>
                   </div>
 
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '12px', borderTop: '1px solid var(--color-border-light)' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '10px', borderTop: '1px solid var(--color-border-light)' }}>
                     <span style={{ fontSize: '11px', color: 'var(--color-text-muted)' }}>{showroom.timing}</span>
                     <span style={{ fontSize: '11px', color: 'var(--color-teak)', fontWeight: 700, textTransform: 'uppercase' }}>Get Directions →</span>
                   </div>

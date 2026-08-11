@@ -108,6 +108,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html {
@@ -122,6 +123,7 @@ html {
 
 body {
   min-height: 100vh;
+  width: 100%;
   overflow-x: hidden;
   background-color: var(--color-bg);
   color: var(--color-text-main);
@@ -144,10 +146,12 @@ button {
   cursor: pointer;
   border: none;
   background: none;
+  touch-action: manipulation;
 }
 
 input, textarea, select {
   font-family: inherit;
+  touch-action: manipulation;
 }
 
 /* Layout Containers */
@@ -231,7 +235,7 @@ input, textarea, select {
 
 .kayujati-logo-hero {
   font-family: var(--font-melfira);
-  font-size: clamp(48px, 8vw, 110px);
+  font-size: clamp(40px, 8vw, 110px);
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 0.95;
@@ -240,19 +244,19 @@ input, textarea, select {
 
 .text-section-title {
   font-family: var(--font-melfira);
-  font-size: clamp(34px, 5.5vw, 62px);
+  font-size: clamp(28px, 5vw, 56px);
   font-weight: 700;
   letter-spacing: -0.01em;
-  line-height: 1.05;
+  line-height: 1.1;
   color: var(--color-text-main);
 }
 
 .text-section-title-serif {
   font-family: var(--font-melfira);
-  font-size: clamp(34px, 5.5vw, 62px);
+  font-size: clamp(28px, 5vw, 56px);
   font-weight: 700;
   letter-spacing: -0.01em;
-  line-height: 1.05;
+  line-height: 1.1;
   color: var(--color-text-main);
 }
 
@@ -268,20 +272,14 @@ input, textarea, select {
   text-transform: uppercase;
 }
 
-@media (min-width: 768px) {
-  .d-md-block {
-    display: block !important;
-  }
-}
-
-/* Pill Buttons with Panchang Typography */
+/* Pill Buttons */
 .btn-pill-dark {
   font-family: var(--font-panchang);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 12px 26px;
+  padding: 12px 24px;
   border-radius: var(--radius-pill);
   background-color: var(--color-text-main);
   color: #ffffff;
@@ -291,6 +289,7 @@ input, textarea, select {
   text-transform: uppercase;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  min-height: 44px;
 }
 
 .btn-pill-dark:hover {
@@ -305,7 +304,7 @@ input, textarea, select {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 11px 24px;
+  padding: 11px 22px;
   border-radius: var(--radius-pill);
   border: 1px solid var(--color-text-main);
   background-color: transparent;
@@ -315,6 +314,7 @@ input, textarea, select {
   letter-spacing: 0.04em;
   text-transform: uppercase;
   transition: all 0.25s ease;
+  min-height: 44px;
 }
 
 .btn-pill-outline:hover {
@@ -328,7 +328,7 @@ input, textarea, select {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 12px 26px;
+  padding: 12px 24px;
   border-radius: var(--radius-pill);
   background-color: rgba(28, 27, 26, 0.65);
   backdrop-filter: blur(12px);
@@ -339,6 +339,7 @@ input, textarea, select {
   letter-spacing: 0.04em;
   text-transform: uppercase;
   transition: all 0.25s ease;
+  min-height: 44px;
 }
 
 .btn-pill-glass:hover {
@@ -347,60 +348,19 @@ input, textarea, select {
   transform: translateY(-1px);
 }
 
-.btn-pill-glass-light {
-  font-family: var(--font-panchang);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 12px 26px;
-  border-radius: var(--radius-pill);
-  background-color: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  color: #ffffff;
-  font-size: 11.5px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  transition: all 0.25s ease;
-}
-
-.btn-pill-glass-light:hover {
-  background-color: rgba(255, 255, 255, 0.35);
-  transform: translateY(-1px);
-}
-
-/* Badges */
-.badge-circular {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
+/* Horizontal Touch Scroll Container (For mobile category filters) */
+.scroll-x-touch {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px dashed rgba(255, 255, 255, 0.4);
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: #ffffff;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding-bottom: 4px;
 }
 
-.badge-bestseller {
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  border: 1px dashed var(--color-text-main);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 8.5px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--color-text-main);
-  background-color: #ffffff;
-  transform: rotate(-12deg);
+.scroll-x-touch::-webkit-scrollbar {
+  display: none;
 }
 
 /* Animations */
@@ -417,7 +377,7 @@ input, textarea, select {
 
 @keyframes slideDrawer {
   from {
-    transform: translateX(100%);
+    transform: translateX(-100%);
   }
   to {
     transform: translateX(0);
@@ -465,9 +425,21 @@ input, textarea, select {
   width: 100%;
 }
 
-/* Responsive adjustments */
-@media (max-width: 992px) {
-  .navbar-center-links {
+/* Desktop vs Mobile display utilities */
+@media (min-width: 992px) {
+  .d-none-desktop {
+    display: none !important;
+  }
+  .d-md-block {
+    display: block !important;
+  }
+}
+
+@media (max-width: 991px) {
+  .navbar-desktop-links {
+    display: none !important;
+  }
+  .d-none-mobile {
     display: none !important;
   }
 }
@@ -476,6 +448,22 @@ input, textarea, select {
   :root {
     --section-gap: 56px;
     --radius-hero: 20px;
+    --radius-card: 16px;
+  }
+
+  .container, .container-narrow {
+    padding-left: 16px;
+    padding-right: 16px;
   }
 }
 
+@media (max-width: 480px) {
+  :root {
+    --section-gap: 48px;
+  }
+
+  .container, .container-narrow {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+}

@@ -59,20 +59,19 @@ export const QualityFeature: React.FC<QualityFeatureProps> = ({ onLearnMore }) =
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
-            gap: 'clamp(36px, 6vw, 80px)',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))',
+            gap: 'clamp(32px, 5vw, 72px)',
             alignItems: 'center',
           }}
         >
           {/* Left Column: Layered Architectural Visual Showcase */}
           <div style={{ position: 'relative' }}>
-            {/* Primary Main Image: Luxurious Teakwood Living Space */}
             <div
               style={{
                 borderRadius: '24px',
                 overflow: 'hidden',
-                height: 'clamp(420px, 50vw, 560px)',
-                boxShadow: '0 24px 60px rgba(28, 27, 26, 0.12)',
+                height: 'clamp(320px, 45vw, 540px)',
+                boxShadow: '0 20px 50px rgba(28, 27, 26, 0.1)',
                 backgroundColor: 'var(--color-surface-soft)',
                 position: 'relative',
               }}
@@ -104,9 +103,9 @@ export const QualityFeature: React.FC<QualityFeatureProps> = ({ onLearnMore }) =
               <div
                 style={{
                   position: 'absolute',
-                  bottom: '24px',
-                  left: '24px',
-                  right: '24px',
+                  bottom: '20px',
+                  left: '20px',
+                  right: '20px',
                   color: '#ffffff',
                   display: 'flex',
                   justifyContent: 'space-between',
@@ -114,10 +113,10 @@ export const QualityFeature: React.FC<QualityFeatureProps> = ({ onLearnMore }) =
                 }}
               >
                 <div>
-                  <div style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.1em', opacity: 0.85, fontWeight: 600 }}>
+                  <div style={{ fontSize: '10.5px', textTransform: 'uppercase', letterSpacing: '0.1em', opacity: 0.85, fontWeight: 600 }}>
                     Flagship Collection
                   </div>
-                  <div className="font-melfira" style={{ fontSize: '20px', fontWeight: 'bold' }}>
+                  <div className="font-melfira" style={{ fontSize: 'clamp(16px, 3vw, 20px)', fontWeight: 'bold' }}>
                     Solid Kiln-Seasoned Teakwood
                   </div>
                 </div>
@@ -125,96 +124,34 @@ export const QualityFeature: React.FC<QualityFeatureProps> = ({ onLearnMore }) =
                   style={{
                     backgroundColor: 'rgba(255, 255, 255, 0.2)',
                     backdropFilter: 'blur(10px)',
-                    padding: '6px 14px',
+                    padding: '4px 12px',
                     borderRadius: 'var(--radius-pill)',
-                    fontSize: '11px',
+                    fontSize: '10.5px',
                     fontWeight: 600,
                     border: '1px solid rgba(255, 255, 255, 0.3)',
+                    flexShrink: 0,
                   }}
                 >
-                  100% Solid Wood
+                  100% Solid
                 </div>
               </div>
-            </div>
-
-            {/* Floating Glassmorphic Trust Card */}
-            <div
-              style={{
-                position: 'absolute',
-                top: '-20px',
-                right: '-20px',
-                backgroundColor: 'rgba(251, 249, 246, 0.95)',
-                backdropFilter: 'blur(16px)',
-                border: '1px solid rgba(197, 131, 78, 0.25)',
-                borderRadius: '18px',
-                padding: '16px 20px',
-                boxShadow: '0 16px 40px rgba(28, 27, 26, 0.14)',
-                maxWidth: '220px',
-                display: 'none', // Shown on md screens
-              }}
-              className="d-md-block"
-            >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
-                <div
-                  style={{
-                    width: '28px',
-                    height: '28px',
-                    borderRadius: '50%',
-                    backgroundColor: 'var(--color-teak)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: '#ffffff',
-                  }}
-                >
-                  <Award size={16} />
-                </div>
-                <span className="font-melfira" style={{ fontSize: '15px', fontWeight: 'bold', color: 'var(--color-text-main)' }}>
-                  12+ Years
-                </span>
-              </div>
-              <p style={{ fontSize: '11.5px', color: 'var(--color-text-muted)', margin: 0, lineHeight: 1.4 }}>
-                Kerala's most trusted bespoke woodcraft heritage.
-              </p>
             </div>
           </div>
 
-          {/* Right Column: Refined Editorial Narrative & 4 Craftsmanship Pillars */}
+          {/* Right Column: Copy & 4-Pillar Matrix */}
           <div>
-            <div
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '8px',
-                padding: '6px 14px',
-                borderRadius: 'var(--radius-pill)',
-                backgroundColor: 'var(--color-surface-soft)',
-                border: '1px solid var(--color-border)',
-                marginBottom: '16px',
-              }}
-            >
-              <Sparkles size={13} color="var(--color-teak)" />
-              <span
-                style={{
-                  fontSize: '11px',
-                  fontWeight: 700,
-                  letterSpacing: '0.1em',
-                  color: 'var(--color-teak-dark)',
-                  textTransform: 'uppercase',
-                }}
-              >
-                Artisanal Standards
-              </span>
+            <div className="text-overline" style={{ marginBottom: '8px' }}>
+              Craftsmanship Standard <span style={{ opacity: 0.5 }}>—</span>
             </div>
 
             <h2
               className="font-melfira"
               style={{
-                fontSize: 'clamp(32px, 4.5vw, 52px)',
+                fontSize: 'clamp(28px, 4.5vw, 48px)',
                 fontWeight: 'bold',
                 lineHeight: 1.1,
                 color: 'var(--color-text-main)',
-                marginBottom: '18px',
+                marginBottom: '14px',
                 letterSpacing: '-0.01em',
               }}
             >
@@ -223,24 +160,24 @@ export const QualityFeature: React.FC<QualityFeatureProps> = ({ onLearnMore }) =
 
             <p
               style={{
-                fontSize: '15px',
+                fontSize: '14.5px',
                 color: 'var(--color-text-body)',
-                lineHeight: 1.7,
-                marginBottom: '32px',
+                lineHeight: 1.65,
+                marginBottom: '28px',
               }}
             >
-              At Dimos Furniture, quality is never an afterthought—it is the very foundation of every piece we build.
-              For over a decade, our master craftsmen in Kerala have hand-selected timber from sustainable plantations,
-              ensuring every grain, joint, and contour delivers generational longevity without compromise.
+              Every dining table, sofa suite, and bed crafted at Dimos is engineered from single-origin,
+              kiln-seasoned Nilambur teak. We combine multi-generational Kerala hand-joinery with modern
+              structural precision to create heirloom pieces that endure for decades.
             </p>
 
-            {/* 4 Craftsmanship Pillars Grid */}
+            {/* 4-Pillar Matrix */}
             <div
               style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-                gap: '20px',
-                marginBottom: '36px',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 180px), 1fr))',
+                gap: '16px',
+                marginBottom: '32px',
               }}
             >
               {PILLARS.map((pillar, idx) => {
@@ -249,49 +186,51 @@ export const QualityFeature: React.FC<QualityFeatureProps> = ({ onLearnMore }) =
                   <div
                     key={idx}
                     style={{
-                      padding: '16px',
-                      borderRadius: '14px',
-                      backgroundColor: 'var(--color-bg)',
+                      padding: '14px',
+                      borderRadius: '12px',
+                      backgroundColor: 'var(--color-bg-warm)',
                       border: '1px solid var(--color-border-light)',
                       transition: 'all 0.25s ease',
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.borderColor = 'var(--color-teak)';
-                      e.currentTarget.style.backgroundColor = 'var(--color-surface-card)';
+                      e.currentTarget.style.transform = 'translateY(-2px)';
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.borderColor = 'var(--color-border-light)';
-                      e.currentTarget.style.backgroundColor = 'var(--color-bg)';
+                      e.currentTarget.style.transform = 'translateY(0)';
                     }}
                   >
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
                       <div
                         style={{
-                          width: '32px',
-                          height: '32px',
+                          width: '28px',
+                          height: '28px',
                           borderRadius: '8px',
-                          backgroundColor: 'var(--color-surface-soft)',
+                          backgroundColor: 'rgba(140, 98, 57, 0.12)',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
                           color: 'var(--color-teak)',
+                          flexShrink: 0,
                         }}
                       >
-                        <IconComponent size={16} />
+                        <IconComponent size={15} />
                       </div>
                       <h4
                         className="font-melfira"
                         style={{
-                          fontSize: '15px',
+                          fontSize: '14px',
                           fontWeight: 'bold',
                           color: 'var(--color-text-main)',
                           margin: 0,
+                          lineHeight: 1.2,
                         }}
                       >
                         {pillar.title}
                       </h4>
                     </div>
-                    <p style={{ fontSize: '12.5px', color: 'var(--color-text-muted)', lineHeight: 1.5, margin: 0 }}>
+                    <p style={{ fontSize: '12px', color: 'var(--color-text-muted)', lineHeight: 1.45, margin: 0 }}>
                       {pillar.desc}
                     </p>
                   </div>
@@ -299,28 +238,19 @@ export const QualityFeature: React.FC<QualityFeatureProps> = ({ onLearnMore }) =
               })}
             </div>
 
-            {/* Actions */}
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', alignItems: 'center' }}>
-              <button
-                onClick={onLearnMore}
-                className="btn-pill-dark"
-                style={{
-                  padding: '14px 28px',
-                  fontSize: '12px',
-                  fontWeight: 600,
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                }}
-              >
-                <span>Explore Our Heritage & Process</span>
-                <ArrowRight size={15} />
-              </button>
-
-              <span style={{ fontSize: '13px', color: 'var(--color-text-muted)', fontWeight: 500 }}>
-                Nilambur Seasoned Timber • 10-Year Warranty
-              </span>
-            </div>
+            {/* Action Link */}
+            <button
+              onClick={onLearnMore}
+              className="btn-pill-dark"
+              style={{
+                padding: '12px 26px',
+                fontSize: '11.5px',
+                gap: '8px',
+              }}
+            >
+              <span>Explore Our Teak Heritage</span>
+              <ArrowRight size={14} />
+            </button>
           </div>
         </div>
       </div>

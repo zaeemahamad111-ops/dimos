@@ -26,75 +26,75 @@ export const OffersPage: React.FC<OffersPageProps> = ({
   };
 
   return (
-    <div style={{ backgroundColor: 'var(--color-bg)', minHeight: '100vh', paddingTop: '100px', paddingBottom: '80px' }}>
+    <div style={{ backgroundColor: 'var(--color-bg)', minHeight: '100vh', paddingTop: 'clamp(80px, 12vw, 110px)', paddingBottom: '80px' }}>
       <div className="container">
         {/* Header Section */}
-        <div style={{ textAlign: 'center', marginBottom: '48px' }}>
+        <div style={{ textAlign: 'center', marginBottom: 'clamp(28px, 4vw, 48px)' }}>
           <div className="text-overline" style={{ marginBottom: '8px' }}>
             Exclusive Showroom Ensembles <span style={{ opacity: 0.5 }}>—</span>
           </div>
           <h1
             className="font-melfira"
             style={{
-              fontSize: 'clamp(36px, 5.5vw, 60px)',
+              fontSize: 'clamp(30px, 5.5vw, 58px)',
               fontWeight: 'bold',
               color: 'var(--color-text-main)',
               lineHeight: 1.1,
-              marginBottom: '14px',
+              marginBottom: '12px',
             }}
           >
             Curated Showroom Packages & Living Offers
           </h1>
-          <p style={{ maxWidth: '640px', margin: '0 auto', fontSize: '15px', color: 'var(--color-text-body)', lineHeight: 1.65 }}>
+          <p style={{ maxWidth: '640px', margin: '0 auto', fontSize: '14.5px', color: 'var(--color-text-body)', lineHeight: 1.65 }}>
             Carefully coordinated complete home packages designed to bring seamless timber aesthetics,
             ergonomic comfort, and complimentary white-glove showroom privileges to your Kerala residence.
           </p>
         </div>
 
-        {/* 4 Brand Privileges Bar */}
+        {/* 4 Brand Privileges Bar (Responsive 2x2 grid on mobile) */}
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-            gap: '16px',
-            marginBottom: '48px',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 150px), 1fr))',
+            gap: '12px',
+            marginBottom: '40px',
           }}
         >
-          <div style={{ backgroundColor: 'var(--color-surface)', padding: '18px', borderRadius: '16px', border: '1px solid var(--color-border-light)', display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <Gift size={22} color="var(--color-teak)" />
+          <div style={{ backgroundColor: 'var(--color-surface)', padding: '14px', borderRadius: '14px', border: '1px solid var(--color-border-light)', display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <Gift size={20} color="var(--color-teak)" style={{ flexShrink: 0 }} />
             <div>
-              <div style={{ fontSize: '13px', fontWeight: 700, color: 'var(--color-text-main)' }}>Free 3D Layout Plan</div>
-              <div style={{ fontSize: '11.5px', color: 'var(--color-text-muted)' }}>Tailored to your architectural floor plan</div>
+              <div style={{ fontSize: '12.5px', fontWeight: 700, color: 'var(--color-text-main)' }}>Free 3D Layout Plan</div>
+              <div style={{ fontSize: '11px', color: 'var(--color-text-muted)' }}>Tailored to your floor plan</div>
             </div>
           </div>
 
-          <div style={{ backgroundColor: 'var(--color-surface)', padding: '18px', borderRadius: '16px', border: '1px solid var(--color-border-light)', display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <Truck size={22} color="var(--color-teak)" />
+          <div style={{ backgroundColor: 'var(--color-surface)', padding: '14px', borderRadius: '14px', border: '1px solid var(--color-border-light)', display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <Truck size={20} color="var(--color-teak)" style={{ flexShrink: 0 }} />
             <div>
-              <div style={{ fontSize: '13px', fontWeight: 700, color: 'var(--color-text-main)' }}>All-Kerala Delivery</div>
-              <div style={{ fontSize: '11.5px', color: 'var(--color-text-muted)' }}>Complimentary white-glove setup</div>
+              <div style={{ fontSize: '12.5px', fontWeight: 700, color: 'var(--color-text-main)' }}>All-Kerala Delivery</div>
+              <div style={{ fontSize: '11px', color: 'var(--color-text-muted)' }}>White-glove setup</div>
             </div>
           </div>
 
-          <div style={{ backgroundColor: 'var(--color-surface)', padding: '18px', borderRadius: '16px', border: '1px solid var(--color-border-light)', display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <ShieldCheck size={22} color="var(--color-teak)" />
+          <div style={{ backgroundColor: 'var(--color-surface)', padding: '14px', borderRadius: '14px', border: '1px solid var(--color-border-light)', display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <ShieldCheck size={20} color="var(--color-teak)" style={{ flexShrink: 0 }} />
             <div>
-              <div style={{ fontSize: '13px', fontWeight: 700, color: 'var(--color-text-main)' }}>10-Year Teak Warranty</div>
-              <div style={{ fontSize: '11.5px', color: 'var(--color-text-muted)' }}>Comprehensive structural protection</div>
+              <div style={{ fontSize: '12.5px', fontWeight: 700, color: 'var(--color-text-main)' }}>10-Year Warranty</div>
+              <div style={{ fontSize: '11px', color: 'var(--color-text-muted)' }}>Comprehensive protection</div>
             </div>
           </div>
 
-          <div style={{ backgroundColor: 'var(--color-surface)', padding: '18px', borderRadius: '16px', border: '1px solid var(--color-border-light)', display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <Sparkles size={22} color="var(--color-teak)" />
+          <div style={{ backgroundColor: 'var(--color-surface)', padding: '14px', borderRadius: '14px', border: '1px solid var(--color-border-light)', display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <Sparkles size={20} color="var(--color-teak)" style={{ flexShrink: 0 }} />
             <div>
-              <div style={{ fontSize: '13px', fontWeight: 700, color: 'var(--color-text-main)' }}>Free Care Kit</div>
-              <div style={{ fontSize: '11.5px', color: 'var(--color-text-muted)' }}>Annual organic teak beeswax polish</div>
+              <div style={{ fontSize: '12.5px', fontWeight: 700, color: 'var(--color-text-main)' }}>Free Care Kit</div>
+              <div style={{ fontSize: '11px', color: 'var(--color-text-muted)' }}>Annual teak beeswax care</div>
             </div>
           </div>
         </div>
 
         {/* Showroom Curated Packages Cards */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '48px', marginBottom: '64px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '40px', marginBottom: '56px' }}>
           {SHOWROOM_PACKAGES.map((pkg, idx) => (
             <div
               key={pkg.id}
@@ -105,14 +105,14 @@ export const OffersPage: React.FC<OffersPageProps> = ({
                 border: '1px solid var(--color-border-light)',
                 boxShadow: 'var(--shadow-md)',
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))',
                 alignItems: 'center',
               }}
             >
               {/* Image Canvas */}
               <div
                 style={{
-                  height: 'clamp(340px, 42vw, 480px)',
+                  height: 'clamp(280px, 38vw, 440px)',
                   position: 'relative',
                   overflow: 'hidden',
                   backgroundColor: 'var(--color-surface-soft)',
@@ -134,14 +134,14 @@ export const OffersPage: React.FC<OffersPageProps> = ({
                 <div
                   style={{
                     position: 'absolute',
-                    top: '16px',
-                    left: '16px',
+                    top: '14px',
+                    left: '14px',
                     backgroundColor: 'rgba(28, 27, 26, 0.8)',
                     backdropFilter: 'blur(8px)',
                     color: '#ffffff',
-                    padding: '6px 14px',
+                    padding: '5px 12px',
                     borderRadius: 'var(--radius-pill)',
-                    fontSize: '11px',
+                    fontSize: '10px',
                     fontWeight: 700,
                     textTransform: 'uppercase',
                     letterSpacing: '0.06em',
@@ -152,25 +152,25 @@ export const OffersPage: React.FC<OffersPageProps> = ({
               </div>
 
               {/* Package Details */}
-              <div style={{ padding: 'clamp(28px, 4vw, 44px)', order: idx % 2 === 1 ? 1 : 2 }}>
-                <div style={{ fontSize: '12px', color: 'var(--color-teak-dark)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '6px' }}>
+              <div style={{ padding: 'clamp(20px, 3.5vw, 36px)', order: idx % 2 === 1 ? 1 : 2 }}>
+                <div style={{ fontSize: '11.5px', color: 'var(--color-teak-dark)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '4px' }}>
                   {pkg.idealFor}
                 </div>
 
                 <h3
                   className="font-melfira"
                   style={{
-                    fontSize: 'clamp(22px, 3vw, 32px)',
+                    fontSize: 'clamp(20px, 3vw, 30px)',
                     fontWeight: 'bold',
                     color: 'var(--color-text-main)',
-                    marginBottom: '12px',
+                    marginBottom: '10px',
                     lineHeight: 1.2,
                   }}
                 >
                   {pkg.title}
                 </h3>
 
-                <p style={{ fontSize: '14px', color: 'var(--color-text-body)', lineHeight: 1.65, marginBottom: '20px' }}>
+                <p style={{ fontSize: '13.5px', color: 'var(--color-text-body)', lineHeight: 1.6, marginBottom: '18px' }}>
                   {pkg.description}
                 </p>
 
@@ -178,19 +178,19 @@ export const OffersPage: React.FC<OffersPageProps> = ({
                 <div
                   style={{
                     backgroundColor: 'var(--color-bg)',
-                    borderRadius: '14px',
-                    padding: '16px 18px',
-                    marginBottom: '20px',
+                    borderRadius: '12px',
+                    padding: '14px 16px',
+                    marginBottom: '18px',
                     border: '1px solid var(--color-border-light)',
                   }}
                 >
-                  <div style={{ fontSize: '12px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--color-text-main)', marginBottom: '8px' }}>
+                  <div style={{ fontSize: '11.5px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--color-text-main)', marginBottom: '6px' }}>
                     Package Includes:
                   </div>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
                     {pkg.piecesIncluded.map((piece, i) => (
-                      <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: '13px', color: 'var(--color-text-main)' }}>
-                        <Check size={14} color="var(--color-teak)" style={{ flexShrink: 0, marginTop: '2px' }} />
+                      <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '6px', fontSize: '12.5px', color: 'var(--color-text-main)' }}>
+                        <Check size={13} color="var(--color-teak)" style={{ flexShrink: 0, marginTop: '2px' }} />
                         <span>{piece}</span>
                       </div>
                     ))}
@@ -198,19 +198,19 @@ export const OffersPage: React.FC<OffersPageProps> = ({
                 </div>
 
                 {/* Showroom Perks */}
-                <div style={{ marginBottom: '24px' }}>
-                  <div style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--color-forest)', marginBottom: '6px' }}>
-                    Complimentary Showroom Privileges:
+                <div style={{ marginBottom: '20px' }}>
+                  <div style={{ fontSize: '10.5px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--color-forest)', marginBottom: '6px' }}>
+                    Showroom Privileges:
                   </div>
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '5px' }}>
                     {pkg.showroomPerks.map((perk, i) => (
                       <span
                         key={i}
                         style={{
-                          fontSize: '11.5px',
+                          fontSize: '11px',
                           backgroundColor: 'rgba(62, 77, 60, 0.08)',
                           color: 'var(--color-forest)',
-                          padding: '4px 10px',
+                          padding: '3px 8px',
                           borderRadius: 'var(--radius-pill)',
                           fontWeight: 600,
                         }}
@@ -222,22 +222,22 @@ export const OffersPage: React.FC<OffersPageProps> = ({
                 </div>
 
                 {/* Actions */}
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
                   <button
                     onClick={() => handleWhatsAppPackageEnquiry(pkg)}
                     className="btn-pill-dark"
-                    style={{ padding: '12px 24px', fontSize: '11.5px', gap: '8px' }}
+                    style={{ padding: '12px 20px', fontSize: '11px', gap: '6px' }}
                   >
-                    <MessageSquare size={15} />
-                    <span>Enquire Package on WhatsApp</span>
+                    <MessageSquare size={14} />
+                    <span>Enquire on WhatsApp</span>
                   </button>
 
                   <button
                     onClick={() => onNavigate('showrooms')}
                     className="btn-pill-outline"
-                    style={{ padding: '12px 20px', fontSize: '11.5px', gap: '6px' }}
+                    style={{ padding: '11px 18px', fontSize: '11px', gap: '5px' }}
                   >
-                    <MapPin size={13} />
+                    <MapPin size={12} />
                     <span>Locate Showroom</span>
                   </button>
                 </div>
@@ -247,11 +247,11 @@ export const OffersPage: React.FC<OffersPageProps> = ({
         </div>
 
         {/* Featured Masterpieces Quick Catalog */}
-        <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-          <h2 className="font-melfira" style={{ fontSize: '28px', fontWeight: 'bold', color: 'var(--color-text-main)', marginBottom: '8px' }}>
+        <div style={{ textAlign: 'center', marginBottom: '28px' }}>
+          <h2 className="font-melfira" style={{ fontSize: 'clamp(22px, 3.5vw, 28px)', fontWeight: 'bold', color: 'var(--color-text-main)', marginBottom: '6px' }}>
             Featured Masterpiece Catalog
           </h2>
-          <p style={{ fontSize: '14px', color: 'var(--color-text-muted)' }}>
+          <p style={{ fontSize: '13.5px', color: 'var(--color-text-muted)' }}>
             Select any individual piece to view architectural dimensions and wood joinery specifications.
           </p>
         </div>
@@ -259,8 +259,8 @@ export const OffersPage: React.FC<OffersPageProps> = ({
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))',
-            gap: '20px',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 220px), 1fr))',
+            gap: '18px',
           }}
         >
           {PRODUCTS.slice(0, 4).map((product) => (
@@ -270,7 +270,7 @@ export const OffersPage: React.FC<OffersPageProps> = ({
               style={{
                 backgroundColor: 'var(--color-surface)',
                 borderRadius: 'var(--radius-card-sm)',
-                padding: '16px',
+                padding: '14px',
                 border: '1px solid var(--color-border-light)',
                 cursor: 'pointer',
                 transition: 'all 0.25s ease',
@@ -286,27 +286,27 @@ export const OffersPage: React.FC<OffersPageProps> = ({
             >
               <div
                 style={{
-                  height: '180px',
+                  height: '160px',
                   backgroundColor: 'var(--color-surface-soft)',
                   borderRadius: '8px',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  padding: '16px',
-                  marginBottom: '12px',
+                  padding: '14px',
+                  marginBottom: '10px',
                 }}
               >
                 <img src={product.image} alt={product.name} style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain' }} />
               </div>
-              <h4 className="font-melfira" style={{ fontSize: '15px', fontWeight: 'bold', margin: '0 0 4px 0' }}>
+              <h4 className="font-melfira" style={{ fontSize: '15px', fontWeight: 'bold', margin: '0 0 3px 0' }}>
                 {product.name}
               </h4>
-              <div style={{ fontSize: '12px', color: 'var(--color-text-muted)', marginBottom: '8px' }}>
+              <div style={{ fontSize: '11.5px', color: 'var(--color-text-muted)', marginBottom: '6px' }}>
                 {product.dimensions}
               </div>
-              <span style={{ fontSize: '11px', fontWeight: 700, color: 'var(--color-teak)', textTransform: 'uppercase', display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+              <span style={{ fontSize: '10.5px', fontWeight: 700, color: 'var(--color-teak)', textTransform: 'uppercase', display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
                 <span>View Specs</span>
-                <ArrowRight size={12} />
+                <ArrowRight size={11} />
               </span>
             </div>
           ))}

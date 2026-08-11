@@ -41,26 +41,26 @@ export const ShopPage: React.FC<ShopPageProps> = ({
   }, [selectedCategory, searchQuery]);
 
   return (
-    <div style={{ backgroundColor: 'var(--color-bg)', minHeight: '100vh', paddingTop: '100px', paddingBottom: '80px' }}>
+    <div style={{ backgroundColor: 'var(--color-bg)', minHeight: '100vh', paddingTop: 'clamp(80px, 12vw, 110px)', paddingBottom: '80px' }}>
       <div className="container">
         {/* Header Title Section */}
-        <div style={{ textAlign: 'center', marginBottom: '48px' }}>
+        <div style={{ textAlign: 'center', marginBottom: 'clamp(28px, 4vw, 48px)' }}>
           <div className="text-overline" style={{ marginBottom: '8px' }}>
             Bespoke Kerala Woodcraft <span style={{ opacity: 0.5 }}>—</span>
           </div>
           <h1
             className="font-melfira"
             style={{
-              fontSize: 'clamp(36px, 5.5vw, 58px)',
+              fontSize: 'clamp(32px, 5.5vw, 58px)',
               fontWeight: 'bold',
               color: 'var(--color-text-main)',
               lineHeight: 1.1,
-              marginBottom: '14px',
+              marginBottom: '12px',
             }}
           >
             The Furniture Collection
           </h1>
-          <p style={{ maxWidth: '620px', margin: '0 auto', fontSize: '15px', color: 'var(--color-text-body)', lineHeight: 1.6 }}>
+          <p style={{ maxWidth: '620px', margin: '0 auto', fontSize: '14.5px', color: 'var(--color-text-body)', lineHeight: 1.6 }}>
             Explore our curated portfolio of handcrafted living, dining, bedroom, and executive furniture.
             Every piece is built with 100% seasoned solid timber and customizable to your exact architectural blueprints.
           </p>
@@ -73,14 +73,14 @@ export const ShopPage: React.FC<ShopPageProps> = ({
             flexWrap: 'wrap',
             justifyContent: 'space-between',
             alignItems: 'center',
-            gap: '16px',
-            marginBottom: '36px',
-            paddingBottom: '20px',
+            gap: '14px',
+            marginBottom: '32px',
+            paddingBottom: '16px',
             borderBottom: '1px solid var(--color-border)',
           }}
         >
-          {/* Category Tabs */}
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+          {/* Horizontal Scrollable Category Tabs */}
+          <div className="scroll-x-touch" style={{ display: 'flex', gap: '8px', maxWidth: '100%' }}>
             {CATEGORIES.map((cat) => {
               const isActive = selectedCategory === cat;
               return (
@@ -88,18 +88,20 @@ export const ShopPage: React.FC<ShopPageProps> = ({
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
                   style={{
-                    padding: '8px 18px',
+                    padding: '8px 16px',
                     borderRadius: 'var(--radius-pill)',
                     backgroundColor: isActive ? 'var(--color-text-main)' : 'var(--color-surface)',
                     color: isActive ? '#ffffff' : 'var(--color-text-body)',
                     border: '1px solid',
                     borderColor: isActive ? 'var(--color-text-main)' : 'var(--color-border)',
-                    fontSize: '11.5px',
+                    fontSize: '11px',
                     fontWeight: 600,
                     textTransform: 'uppercase',
                     letterSpacing: '0.04em',
                     transition: 'all 0.2s ease',
                     cursor: 'pointer',
+                    flexShrink: 0,
+                    minHeight: '38px',
                   }}
                 >
                   {cat}
@@ -116,14 +118,14 @@ export const ShopPage: React.FC<ShopPageProps> = ({
               backgroundColor: 'var(--color-surface)',
               border: '1px solid var(--color-border)',
               borderRadius: 'var(--radius-pill)',
-              padding: '6px 16px',
-              minWidth: '240px',
+              padding: '8px 16px',
+              width: 'clamp(220px, 100%, 320px)',
             }}
           >
-            <Search size={15} color="var(--color-text-muted)" style={{ marginRight: '8px' }} />
+            <Search size={15} color="var(--color-text-muted)" style={{ marginRight: '8px', flexShrink: 0 }} />
             <input
               type="text"
-              placeholder="Search by piece, wood grade..."
+              placeholder="Search pieces, wood species..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               style={{
@@ -140,8 +142,8 @@ export const ShopPage: React.FC<ShopPageProps> = ({
 
         {/* Product Grid */}
         {filteredProducts.length === 0 ? (
-          <div style={{ textAlign: 'center', padding: '80px 0', color: 'var(--color-text-muted)' }}>
-            <p style={{ fontSize: '16px' }}>No furniture designs found matching your search.</p>
+          <div style={{ textAlign: 'center', padding: '60px 0', color: 'var(--color-text-muted)' }}>
+            <p style={{ fontSize: '15px' }}>No furniture designs found matching your search.</p>
             <button
               onClick={() => {
                 setSelectedCategory('All Collections');
@@ -157,8 +159,8 @@ export const ShopPage: React.FC<ShopPageProps> = ({
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-              gap: '28px',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 260px), 1fr))',
+              gap: '24px',
             }}
           >
             {filteredProducts.map((product) => (
@@ -177,7 +179,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({
                 }}
                 onClick={() => onSelectProduct(product)}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-5px)';
+                  e.currentTarget.style.transform = 'translateY(-4px)';
                   e.currentTarget.style.boxShadow = 'var(--shadow-lg)';
                   e.currentTarget.style.borderColor = 'var(--color-border)';
                 }}
@@ -191,11 +193,11 @@ export const ShopPage: React.FC<ShopPageProps> = ({
                 <div
                   style={{
                     backgroundColor: 'var(--color-surface-soft)',
-                    height: '260px',
+                    height: 'clamp(200px, 30vw, 250px)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    padding: '24px',
+                    padding: '20px',
                     position: 'relative',
                   }}
                 >
@@ -206,7 +208,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({
                       maxHeight: '100%',
                       maxWidth: '100%',
                       objectFit: 'contain',
-                      filter: 'drop-shadow(0 10px 20px rgba(0,0,0,0.06))',
+                      filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.06))',
                     }}
                   />
 
@@ -233,36 +235,36 @@ export const ShopPage: React.FC<ShopPageProps> = ({
                 </div>
 
                 {/* Body Details */}
-                <div style={{ padding: '20px', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                <div style={{ padding: '18px', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                   <div>
                     <h3
                       className="font-melfira"
                       style={{
-                        fontSize: '18px',
+                        fontSize: '17px',
                         fontWeight: 'bold',
                         color: 'var(--color-text-main)',
-                        marginBottom: '6px',
+                        marginBottom: '4px',
                       }}
                     >
                       {product.name}
                     </h3>
-                    <div style={{ fontSize: '12.5px', color: 'var(--color-teak-dark)', fontWeight: 600, marginBottom: '6px' }}>
+                    <div style={{ fontSize: '12px', color: 'var(--color-teak-dark)', fontWeight: 600, marginBottom: '6px' }}>
                       {product.woodType}
                     </div>
-                    <p style={{ fontSize: '13px', color: 'var(--color-text-muted)', lineHeight: 1.5, marginBottom: '14px' }}>
-                      {product.description.slice(0, 100)}...
+                    <p style={{ fontSize: '12.5px', color: 'var(--color-text-muted)', lineHeight: 1.5, marginBottom: '12px' }}>
+                      {product.description.slice(0, 95)}...
                     </p>
 
-                    <div style={{ fontSize: '12px', color: 'var(--color-text-body)', backgroundColor: 'var(--color-bg)', padding: '8px 12px', borderRadius: '8px', marginBottom: '16px' }}>
+                    <div style={{ fontSize: '11.5px', color: 'var(--color-text-body)', backgroundColor: 'var(--color-bg)', padding: '6px 10px', borderRadius: '8px', marginBottom: '14px' }}>
                       <strong>Dimensions: </strong>{product.dimensions}
                     </div>
                   </div>
 
                   {/* Action Link */}
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '12px', borderTop: '1px solid var(--color-border-light)' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '10px', borderTop: '1px solid var(--color-border-light)' }}>
                     <span
                       style={{
-                        fontSize: '11.5px',
+                        fontSize: '11px',
                         fontWeight: 700,
                         color: 'var(--color-teak)',
                         textTransform: 'uppercase',
@@ -272,8 +274,8 @@ export const ShopPage: React.FC<ShopPageProps> = ({
                         gap: '4px',
                       }}
                     >
-                      <span>View Specifications</span>
-                      <ArrowRight size={13} />
+                      <span>View Specs</span>
+                      <ArrowRight size={12} />
                     </span>
 
                     <button
@@ -287,13 +289,14 @@ export const ShopPage: React.FC<ShopPageProps> = ({
                         borderRadius: 'var(--radius-pill)',
                         backgroundColor: 'var(--color-surface-soft)',
                         border: '1px solid var(--color-border)',
-                        fontSize: '11px',
+                        fontSize: '10.5px',
                         fontWeight: 600,
                         color: 'var(--color-text-main)',
                         display: 'inline-flex',
                         alignItems: 'center',
                         gap: '4px',
                         cursor: 'pointer',
+                        minHeight: '34px',
                       }}
                     >
                       <MessageSquare size={12} color="var(--color-teak)" />
@@ -309,8 +312,8 @@ export const ShopPage: React.FC<ShopPageProps> = ({
         {/* Showroom Consultation Banner at Bottom */}
         <div
           style={{
-            marginTop: '64px',
-            padding: '36px',
+            marginTop: '56px',
+            padding: 'clamp(24px, 4vw, 36px)',
             borderRadius: 'var(--radius-card)',
             backgroundColor: 'var(--color-surface-card)',
             border: '1px solid var(--color-border)',
@@ -318,7 +321,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({
             flexWrap: 'wrap',
             justifyContent: 'space-between',
             alignItems: 'center',
-            gap: '24px',
+            gap: '20px',
           }}
         >
           <div>
@@ -328,10 +331,10 @@ export const ShopPage: React.FC<ShopPageProps> = ({
                 Kerala Experience Centers
               </span>
             </div>
-            <h3 className="font-melfira" style={{ fontSize: '24px', fontWeight: 'bold', color: 'var(--color-text-main)', margin: '0 0 6px 0' }}>
+            <h3 className="font-melfira" style={{ fontSize: 'clamp(20px, 3.5vw, 24px)', fontWeight: 'bold', color: 'var(--color-text-main)', margin: '0 0 6px 0' }}>
               Experience Our Solid Teakwood Collections In Person
             </h3>
-            <p style={{ fontSize: '14px', color: 'var(--color-text-muted)', margin: 0 }}>
+            <p style={{ fontSize: '13.5px', color: 'var(--color-text-muted)', margin: 0 }}>
               Visit our 5 flagship Kollam experience centers to feel the grain, test ergonomics, and consult with our woodcraft specialists.
             </p>
           </div>
@@ -339,7 +342,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({
           <button
             onClick={() => onNavigate('showrooms')}
             className="btn-pill-dark"
-            style={{ padding: '14px 28px', fontSize: '12px', gap: '8px' }}
+            style={{ padding: '12px 24px', fontSize: '11.5px', gap: '8px' }}
           >
             <span>Explore 5 Kollam Showrooms</span>
             <ArrowRight size={14} />

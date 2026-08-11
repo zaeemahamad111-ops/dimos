@@ -109,10 +109,9 @@ export const Hero: React.FC<HeroProps> = () => {
     };
 
     const renderLoop = () => {
-      // Smooth inertial interpolation for fluid scroll scrubbing
       const diff = targetProgress - smoothProgress;
       if (Math.abs(diff) > 0.0001) {
-        smoothProgress += diff * 0.18;
+        smoothProgress += diff * 0.2;
         const frameIndex = Math.min(
           TOTAL_FRAMES - 1,
           Math.max(0, Math.round(smoothProgress * (TOTAL_FRAMES - 1)))
@@ -142,7 +141,7 @@ export const Hero: React.FC<HeroProps> = () => {
       style={{
         position: 'relative',
         width: '100%',
-        height: '240vh', // Smooth tactile scroll length
+        height: 'clamp(150vh, 200vh, 240vh)', // Responsive scroll length
         margin: 0,
         padding: 0,
         backgroundColor: '#1c1b1a',
@@ -179,17 +178,17 @@ export const Hero: React.FC<HeroProps> = () => {
             position: 'absolute',
             inset: 0,
             background:
-              'linear-gradient(180deg, rgba(28, 27, 26, 0.35) 0%, rgba(28, 27, 26, 0.0) 45%, rgba(28, 27, 26, 0.6) 100%)',
+              'linear-gradient(180deg, rgba(28, 27, 26, 0.4) 0%, rgba(28, 27, 26, 0.0) 40%, rgba(28, 27, 26, 0.65) 100%)',
             pointerEvents: 'none',
           }}
         />
 
-        {/* Left Bottom 3-Word Statement in Teko-SemiBold (No Shadow) */}
+        {/* Left Bottom 3-Word Statement in Melfira (No Shadow) */}
         <div
           className="container"
           style={{
             position: 'absolute',
-            bottom: 'clamp(32px, 5vh, 60px)',
+            bottom: 'clamp(28px, 6vh, 60px)',
             left: 0,
             right: 0,
             zIndex: 10,
@@ -207,12 +206,12 @@ export const Hero: React.FC<HeroProps> = () => {
             <h1
               className="font-melfira"
               style={{
-                fontSize: 'clamp(48px, 8.5vw, 116px)',
+                fontSize: 'clamp(34px, 8.5vw, 116px)',
                 fontWeight: 'bold',
                 color: '#ffffff',
                 lineHeight: 0.95,
                 letterSpacing: '-0.01em',
-                textShadow: 'none', // Strictly no shadow as requested
+                textShadow: 'none',
                 margin: 0,
               }}
             >
@@ -222,6 +221,7 @@ export const Hero: React.FC<HeroProps> = () => {
 
           {/* Minimal Vertical Scroll Cue on the right */}
           <div
+            className="d-none-mobile"
             style={{
               display: 'flex',
               flexDirection: 'column',
