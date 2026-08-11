@@ -186,16 +186,16 @@ export const InitialLoader: React.FC<InitialLoaderProps> = ({ onFinish }) => {
           marginTop: 'auto',
           marginBottom: 'auto',
           width: '100%',
-          maxWidth: '560px',
+          maxWidth: 'clamp(360px, 90vw, 680px)',
           marginLeft: 'auto',
           marginRight: 'auto',
         }}
       >
-        {/* Much Larger Logo (as requested) */}
+        {/* 50% Larger Logo */}
         <div
           style={{
             position: 'relative',
-            marginBottom: 'clamp(24px, 4vw, 36px)',
+            marginBottom: 'clamp(20px, 3.5vw, 32px)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -205,12 +205,12 @@ export const InitialLoader: React.FC<InitialLoaderProps> = ({ onFinish }) => {
             src="/86.png"
             alt="Dimos Furniture"
             style={{
-              height: 'clamp(72px, 14vw, 115px)', // Significantly larger logo
+              height: 'clamp(110px, 22vw, 175px)', // 50% more higher as requested
               width: 'auto',
-              maxWidth: 'clamp(260px, 70vw, 440px)',
+              maxWidth: 'clamp(340px, 85vw, 560px)',
               objectFit: 'contain',
               display: 'block',
-              filter: 'drop-shadow(0 14px 36px rgba(0,0,0,0.65))',
+              filter: 'drop-shadow(0 16px 40px rgba(0,0,0,0.7))',
             }}
           />
         </div>
