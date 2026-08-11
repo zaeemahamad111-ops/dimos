@@ -4,7 +4,7 @@ interface InitialLoaderProps {
   onFinish: () => void;
 }
 
-const TOTAL_FRAMES = 221;
+const TOTAL_FRAMES = 100;
 export const globalPreloadedFrames: HTMLImageElement[] = [];
 
 export const InitialLoader: React.FC<InitialLoaderProps> = ({ onFinish }) => {
@@ -19,7 +19,7 @@ export const InitialLoader: React.FC<InitialLoaderProps> = ({ onFinish }) => {
   const finishedRef = useRef<boolean>(false);
 
   useEffect(() => {
-    // 1. Preload 221 Frames into global memory
+    // 1. Preload 100 Frames into global memory
     if (globalPreloadedFrames.length === 0) {
       for (let i = 0; i < TOTAL_FRAMES; i++) {
         const padded = String(i + 1).padStart(3, '0');
@@ -36,7 +36,7 @@ export const InitialLoader: React.FC<InitialLoaderProps> = ({ onFinish }) => {
     }
 
     // 2. Smooth Continuous RequestAnimationFrame Animation Loop
-    const MIN_DURATION = 3500; // 3.5 seconds smooth build-up
+    const MIN_DURATION = 3000; // 3.0s smooth dynamic progress
     let currentVal = 0;
 
     const tick = () => {
@@ -49,7 +49,7 @@ export const InitialLoader: React.FC<InitialLoaderProps> = ({ onFinish }) => {
       // Target progress climbs smoothly without getting stuck
       let target = Math.min(100, Math.min(framePercent + 15, timePercent));
       
-      if (elapsed >= MIN_DURATION && framesLoadedRef.current >= Math.min(TOTAL_FRAMES, 50)) {
+      if (elapsed >= MIN_DURATION && framesLoadedRef.current >= Math.min(TOTAL_FRAMES, 40)) {
         target = 100;
       }
 

@@ -5,7 +5,7 @@ interface HeroProps {
   onOpenVideo?: () => void;
 }
 
-const TOTAL_FRAMES = 221;
+const TOTAL_FRAMES = 100;
 
 export const Hero: React.FC<HeroProps> = () => {
   const containerRef = useRef<HTMLDivElement>(null);
