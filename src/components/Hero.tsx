@@ -219,13 +219,13 @@ export const Hero: React.FC<HeroProps> = () => {
         >
           <div style={{ maxWidth: '800px' }}>
             <h1
-              className="font-melfira"
               style={{
+                fontFamily: 'var(--font-sans)',
                 fontSize: 'clamp(34px, 8.5vw, 116px)',
-                fontWeight: 'bold',
+                fontWeight: 800,
                 color: '#ffffff',
                 lineHeight: 0.95,
-                letterSpacing: '-0.01em',
+                letterSpacing: '-0.03em',
                 textShadow: 'none',
                 margin: 0,
               }}
