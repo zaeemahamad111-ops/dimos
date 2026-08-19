@@ -4,7 +4,7 @@ interface HeroProps {
   onOpenVideo?: () => void;
 }
 
-const TOTAL_FRAMES = 200;
+const TOTAL_FRAMES = 192;
 
 export const Hero: React.FC<HeroProps> = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -20,14 +20,31 @@ export const Hero: React.FC<HeroProps> = () => {
     return `/frames/frame_${padded}.webp`;
   };
 
-  // Draw specific frame onto canvas with proper cover aspect ratio
+  // Draw specific frame onto canvas with seamless nearest-frame fallback
   const drawFrame = (frameIndex: number) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const img = imagesRef.current[frameIndex];
+    let img = imagesRef.current[frameIndex];
+    
+    // If targeted frame is still loading, seamlessly fallback to nearest loaded frame
+    if (!img || !img.complete || img.naturalWidth === 0) {
+      for (let offset = 1; offset < TOTAL_FRAMES; offset++) {
+        const prev = imagesRef.current[frameIndex - offset];
+        if (prev && prev.complete && prev.naturalWidth > 0) {
+          img = prev;
+          break;
+        }
+        const next = imagesRef.current[frameIndex + offset];
+        if (next && next.complete && next.naturalWidth > 0) {
+          img = next;
+          break;
+        }
+      }
+    }
+
     if (!img || !img.complete || img.naturalWidth === 0) return;
 
     const canvasWidth = canvas.width;
@@ -35,7 +52,7 @@ export const Hero: React.FC<HeroProps> = () => {
     const imgWidth = img.naturalWidth;
     const imgHeight = img.naturalHeight;
 
-    // Calculate "cover" scale and positioning
+    // Calculate "cover" scale and centering
     const scale = Math.max(canvasWidth / imgWidth, canvasHeight / imgHeight);
     const drawWidth = imgWidth * scale;
     const drawHeight = imgHeight * scale;
@@ -47,7 +64,7 @@ export const Hero: React.FC<HeroProps> = () => {
     currentFrameRef.current = frameIndex;
   };
 
-  // Setup canvas resolution and resize listener
+  // Setup canvas resolution with DPR scaling
   const resizeCanvas = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -60,11 +77,11 @@ export const Hero: React.FC<HeroProps> = () => {
     drawFrame(currentFrameRef.current);
   };
 
-  // Preload frames sequence
+  // Progressive high-performance preloading
   useEffect(() => {
-    const images: HTMLImageElement[] = [];
+    const images: HTMLImageElement[] = new Array(TOTAL_FRAMES);
 
-    // Setup initial frame
+    // 1. Load First Frame with top priority and render immediately
     const firstImg = new Image();
     firstImg.src = getFramePath(0);
     const onFirstLoad = () => {
@@ -78,13 +95,10 @@ export const Hero: React.FC<HeroProps> = () => {
     } else {
       firstImg.onload = onFirstLoad;
     }
+    images[0] = firstImg;
 
-    // Preload remaining frames in background
-    for (let i = 0; i < TOTAL_FRAMES; i++) {
-      if (i === 0) {
-        images[0] = firstImg;
-        continue;
-      }
+    // 2. Load all remaining frames progressively in background
+    for (let i = 1; i < TOTAL_FRAMES; i++) {
       const img = new Image();
       img.src = getFramePath(i);
       img.onload = () => {
@@ -104,7 +118,7 @@ export const Hero: React.FC<HeroProps> = () => {
     };
   }, []);
 
-  // Smooth scroll scrubbing loop
+  // Smooth scroll scrubbing loop with 60-120fps inertial interpolation
   useEffect(() => {
     let animationFrameId: number;
     let targetProgress = 0;
@@ -126,7 +140,7 @@ export const Hero: React.FC<HeroProps> = () => {
     const renderLoop = () => {
       const diff = targetProgress - smoothProgress;
       if (Math.abs(diff) > 0.0001) {
-        smoothProgress += diff * 0.2;
+        smoothProgress += diff * 0.22;
         const frameIndex = Math.min(
           TOTAL_FRAMES - 1,
           Math.max(0, Math.round(smoothProgress * (TOTAL_FRAMES - 1)))
@@ -156,7 +170,7 @@ export const Hero: React.FC<HeroProps> = () => {
       style={{
         position: 'relative',
         width: '100%',
-        height: 'clamp(150vh, 200vh, 240vh)', // Responsive scroll length
+        height: 'clamp(160vh, 200vh, 240vh)', // Responsive scroll depth
         margin: 0,
         padding: 0,
         backgroundColor: '#1c1b1a',
@@ -183,7 +197,9 @@ export const Hero: React.FC<HeroProps> = () => {
             width: '100%',
             height: '100%',
             display: 'block',
-            filter: 'brightness(0.96) contrast(1.02)',
+            filter: 'brightness(0.97) contrast(1.02)',
+            transform: 'translateZ(0)',
+            willChange: 'transform',
           }}
         />
 
@@ -198,7 +214,7 @@ export const Hero: React.FC<HeroProps> = () => {
           }}
         />
 
-        {/* Left Bottom 3-Word Statement in Melfira (No Shadow) */}
+        {/* Left Bottom Statement in Professional Architectural Sans */}
         <div
           className="container"
           style={{
@@ -252,7 +268,7 @@ export const Hero: React.FC<HeroProps> = () => {
                 letterSpacing: '0.12em',
                 textTransform: 'uppercase',
                 color: 'rgba(255, 255, 255, 0.75)',
-                fontWeight: 500,
+                fontWeight: 600,
               }}
             >
               Scroll
